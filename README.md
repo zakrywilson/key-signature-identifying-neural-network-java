@@ -5,7 +5,7 @@ To run this project, simply run `MusicTheoryNets.java`.
 
 ## How it works
 
-* For each training session...
+For each training session...
 * The `Song` class creates a *song* which is nothing more than a random series of notes.
 * The *song* is then preprocessed in the `NetsPreprocessing` class to output an array
 containing the number of occurrences of each note C through B: e.g., note C -> `array[0] = 11` occurrences,
