@@ -3,6 +3,7 @@ package musicTheory;
 import java.util.Random;
 
 /**
+ * Neural network that can identify the key signature of a arbitrary melody.
  * @author zakrywilson
  * @since 09/03/15
  */
