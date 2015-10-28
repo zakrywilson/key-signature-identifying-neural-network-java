@@ -1,7 +1,6 @@
 package musicTheory;
 
 import java.util.Random;
-import java.util.logging.Logger;
 
 /**
  * @author zakrywilson
@@ -13,7 +12,7 @@ public class MusicTheoryNets {
     protected static final int GUESS = 0;
     protected static final int ERROR = 1;
     protected static final int NUM_INPUT_NODES = 12;
-    protected static final int NUM_HIDDEN_NODES = 24;
+    protected static final int NUM_HIDDEN_NODES = 12;
     protected static final int NUM_OUTPUT_NODES = 12;
     protected static final int NUM_NODES = NUM_INPUT_NODES + NUM_HIDDEN_NODES + NUM_OUTPUT_NODES;
     protected static final int ARRAY_SIZE = NUM_NODES;
@@ -21,9 +20,6 @@ public class MusicTheoryNets {
     protected static final double E = 2.71828;
     protected static final double LEARNING_RATE = 0.18;
     
-    // logging
-//  private static final Logger logger = Logger.getAnonymousLogger();
-
     // globals
     private Random random = null;
 
