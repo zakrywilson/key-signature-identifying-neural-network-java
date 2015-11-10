@@ -28,10 +28,12 @@ is then given the *correct answer* of `[ 1 0 0 0 0 0 0 0 0 0 0 0 ]` to learn on 
 ## Output
 * Output is sent to standard out.
 * Output contains:
-  * Neural network's guess
+  * The neural network's guess
   * The correct answer
   * The standard error
-  * A `+` sign if the network was correct
+  * And a `+` sign if the network was correct
+  * [Here](http://i.imgur.com/2QhDqRl.png) is an example of 
+  the output after 10 million training sessions.
 
 ## Notes
 * **This project has not been tested on real data. Results from testing with real data will come soon.**
