@@ -1,4 +1,4 @@
-# Key Signature Identifying Neural Network in Java
+# Key Signature Identifying Neural Network
 A neural network that can learn identify the key signature of a given melody.
 
 ## How to run it
