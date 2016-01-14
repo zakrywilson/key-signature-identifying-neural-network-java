@@ -1,4 +1,9 @@
-public class NetsPostprocessing {
+/**
+ * Handles determining correctness of the neural net's guesses as well as displaying results.
+ * @author zakrywilson
+ * @since 08/31/2015
+ */
+class NetsPostprocessing {
 	
 	/**
 	 * Takes the key of the song and constructs a <code>double[]</code>
@@ -25,7 +30,7 @@ public class NetsPostprocessing {
 	 * @param correctAnswer
 	 * @return an array that contains all the correct answers for the net's output
 	 */
-	protected static double[] computeExpectedAnswer(double correctAnswer) {
+	static double[] computeExpectedAnswer(double correctAnswer) {
 		double[] expectedAnswers = new double[12];
 		expectedAnswers[(int) correctAnswer] = 1.0;
 		
@@ -37,13 +42,13 @@ public class NetsPostprocessing {
 	 * @param values
 	 * @return net's guess
 	 */
-	protected static double interpretResults(double values[]) {
-		int index = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES + 1;
-		double offset = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES;
+	static double interpretResults(double values[]) {
+		int index = NeuralNet.sizeOfNetwork() - NeuralNet.sizeOfOutputLayer() + 1;
+		double offset = index - 1;
 		double guess = values[index - 1];
 		double note = index - 1.0;
 		double val = 0.0;
-		
+
 		while (index < values.length) {
 			val = values[index];
 			if (val > guess) { 
@@ -61,7 +66,7 @@ public class NetsPostprocessing {
 	 * @return net's guess
 	 */
 	protected static double interpretResultsAddition(double values[]) {
-		int index = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES + 1;
+		int index = NeuralNet.sizeOfNetwork() - NeuralNet.sizeOfOutputLayer() + 1;
 		double val = 0.0;
 		
 		while (index < values.length) {
@@ -83,7 +88,7 @@ public class NetsPostprocessing {
 	 * @param correctAnswer
 	 * @param results
 	 */
-	protected static void displayNetwork(double correctAnswer, double results[]) {
+	static void displayNetwork(double correctAnswer, double results[]) {
 		String s = " ";
 		
 		if (correctAnswer == results[NeuralNet.GUESS]) s = "+";

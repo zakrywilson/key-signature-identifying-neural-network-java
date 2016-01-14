@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -5,28 +6,36 @@ import java.util.Random;
  * @author zakrywilson
  * @since 09/03/15
  */
-public class NeuralNet {
+class NeuralNet {
 
-  // Constants
-  protected static final int GUESS = 0;
-  protected static final int ERROR = 1;
-  protected static final int NUM_INPUT_NODES = 12;
-  protected static final int NUM_HIDDEN_NODES = 12;
-  protected static final int NUM_OUTPUT_NODES = 12;
-  protected static final int NUM_NODES = NUM_INPUT_NODES + NUM_HIDDEN_NODES + NUM_OUTPUT_NODES;
-  protected static final int ARRAY_SIZE = NUM_NODES;
-  protected static final int MAX_ITERATIONS = 10000000; // 10,000,000
-  protected static final double E = 2.71828;
-  protected static final double LEARNING_RATE = 0.18;
+  /** Singleton instance */
+  private static NeuralNet instance = null;
 
-  // globals
+  /** Random instance */
   private Random random = null;
 
+  // Constants
+  private static final double E = 2.71828;
+  private static final double LEARNING_RATE = 0.18;
+
+  // Optional network configurations with default values
+  private static int maxIterations = 10000000; // 10 million iterations
+  private static int inputNodes = 12;
+  private static int hiddenNodes = 12;
+  private static int outputNodes = 12;
+  private static int totalNumberOfNodes = inputNodes + hiddenNodes + outputNodes;
+  private static int arraySize = totalNumberOfNodes;
+
+  // Improves readability for result array
+  static final int GUESS = 0;
+  static final int ERROR = 1;
+
+
   /**
-   * Constructor: initializes Random object
+   * Constructor.
    */
-  public NeuralNet() {
-    this.random = new Random(System.currentTimeMillis() * System.currentTimeMillis());
+  private NeuralNet() {
+    random = new Random(System.currentTimeMillis() * System.currentTimeMillis());
   }
 
   /**
@@ -42,9 +51,9 @@ public class NeuralNet {
    * @param thresholds
    */
   private void connectNodes(double weights[][], double thresholds[]) {
-    for (int x = 0; x < NUM_NODES; x++) {
+    for (int x = 0; x < totalNumberOfNodes; x++) {
       thresholds[x] = rand() / (double) rand();
-      for (int y = 0; y < NUM_NODES; y++) {
+      for (int y = 0; y < totalNumberOfNodes; y++) {
         weights[x][y] = (rand() % 200) / 100.0;
       }
     }
@@ -57,11 +66,11 @@ public class NeuralNet {
    */
   private void activateNetwork(double weights[][], double values[], double thresholds[]) {
     // For every hidden node
-    for (int h = NUM_INPUT_NODES; h < NUM_INPUT_NODES + NUM_HIDDEN_NODES; h++) {
+    for (int h = inputNodes; h < inputNodes + hiddenNodes; h++) {
       double weightedInput = 0.0;
 
       // Add up the weighted inputs
-      for (int i = 0; i < NUM_INPUT_NODES; i++) {
+      for (int i = 0; i < inputNodes; i++) {
         weightedInput += weights[i][h] * values[i];
       }
 
@@ -71,11 +80,11 @@ public class NeuralNet {
     }
 
     // For every output node
-    for (int o = NUM_INPUT_NODES + NUM_HIDDEN_NODES; o < NUM_NODES; o++) {
+    for (int o = inputNodes + hiddenNodes; o < totalNumberOfNodes; o++) {
       double weightedInput = 0.0;
 
       // Add up the weighted inputs
-      for (int h = NUM_INPUT_NODES; h < NUM_INPUT_NODES + NUM_HIDDEN_NODES; h++) {
+      for (int h = inputNodes; h < inputNodes + hiddenNodes; h++) {
         weightedInput += weights[h][o] * values[h];
       }
       weightedInput += (-1 * thresholds[o]);
@@ -96,17 +105,17 @@ public class NeuralNet {
 
     double error = 0.0;
 
-    for (int o = NUM_INPUT_NODES + NUM_HIDDEN_NODES; o < NUM_NODES; o++) {
+    for (int o = inputNodes + hiddenNodes; o < totalNumberOfNodes; o++) {
 
-      double absoluteError = expectedAnswer[o - NUM_INPUT_NODES - NUM_HIDDEN_NODES] - values[o];
-      error += (Math.pow(absoluteError, 2)) / NUM_INPUT_NODES;
+      double absoluteError = expectedAnswer[o - inputNodes - hiddenNodes] - values[o];
+      error += (Math.pow(absoluteError, 2)) / inputNodes;
       double outputErrorGradient = values[o] * (1.0 - values[o]) * absoluteError;
 
-      for (int h = NUM_INPUT_NODES; h < NUM_INPUT_NODES + NUM_HIDDEN_NODES; h++) {
+      for (int h = inputNodes; h < inputNodes + hiddenNodes; h++) {
         double delta = LEARNING_RATE * values[h] * outputErrorGradient;
         weights[h][o] += delta;
         double hiddenErrorGradient = values[h] * (1 - values[h]) * outputErrorGradient * weights[h][o];
-        for (int i = 0; i < NUM_INPUT_NODES; i++) {
+        for (int i = 0; i < inputNodes; i++) {
           double _delta = LEARNING_RATE * values[i] * hiddenErrorGradient;
           weights[i][h] += _delta;
         }
@@ -120,29 +129,90 @@ public class NeuralNet {
     return error;
   }
 
+  /**
+   * Gets the number of input nodes in the network.
+   * @return number of input nodes
+   */
+  public static int sizeOfInputLayer() {
+    return inputNodes;
+  }
 
-  public static void main(String[] args) {
+  /**
+   * Gets the number of hidden nodes in the network.
+   * @return number of hidden nodes
+   */
+  public static int sizeOfHiddenLayer() {
+    return hiddenNodes;
+  }
+
+  /**
+   * Gets the number of output nodes in the network.
+   * @return number of output nodes
+   */
+  public static int sizeOfOutputLayer() {
+    return outputNodes;
+  }
+
+  /**
+   * Gets the total number of nodes in the network.
+   * @return total number of nodes in network
+   */
+  public static int sizeOfNetwork() {
+    return totalNumberOfNodes;
+  }
+
+  /**
+   * Sets the number of nodes for each layer in the neural net.
+   * @param input - number of input nodes
+   * @param hidden - number of hidden nodes
+   * @param output - number of output nodes
+   */
+  public void configure(final int input, final int hidden, final int output) {
+    inputNodes = input;
+    hiddenNodes = hidden;
+    inputNodes = output;
+  }
+
+  /**
+   * Set number of iterations.
+   * @param iterations - max number of iterations
+   */
+  public void setIterations(final int iterations) {
+    maxIterations = iterations;
+  }
+
+  /**
+   * Singleton.
+   *
+   * @return instance of NeuralNet
+   */
+  public static NeuralNet getInstance() {
+    return (instance == null) ? new NeuralNet() : instance;
+  }
+
+  /**
+   * Runs the neural network through it's number of iterations.
+   */
+  public void run() {
     NeuralNet net = new NeuralNet();
 
     System.out.println("Neural Network Program\n");
 
-    double[][] weights = new double[ARRAY_SIZE][ARRAY_SIZE];
-    double[] thresholds = new double[ARRAY_SIZE];
+    double[][] weights = new double[arraySize][arraySize];
+    double[] thresholds = new double[arraySize];
 
     net.connectNodes(weights, thresholds);
 
-    for (int iteration = 0; iteration < MAX_ITERATIONS; iteration++) {
+    for (int iteration = 0; iteration < maxIterations; iteration++) {
 
       // get and set new test data
       Song song = new Song();
-      double[] values = new double[NUM_NODES];
+      double[] values = new double[totalNumberOfNodes];
       double[] frequencies = song.getFrequencies();
       double[] results = new double[2];
       double correctAnswer = song.getKeyOfSong();
 
-      for (int i = 0; i < frequencies.length; i++) {
-        values[i] = frequencies[i];
-      }
+      values = Arrays.copyOf(frequencies, frequencies.length);
 
       // run training for the network
       net.activateNetwork(weights, values, thresholds);
