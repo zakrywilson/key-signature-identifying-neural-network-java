@@ -14,15 +14,15 @@ containing the number of occurrences of each note – C through B.
   * Examples: 
     * Note C -> `array[0] = 29` means that the note C occurred a total of 29 times in the song.
     * Note C# -> `array[1] = 0` means that the note C# did not occur in the song. 
-    * Note B -> `array[11] = 3` means that the note B only occured a total of 3 times in the song.
+    * Note B -> `array[11] = 3` means that the note B only occurred a total of 3 times in the song.
 3. The preprocessed song is fed into the neural network in the `MusicTheoryNets` class for a single training session. The neural net has 12 input nodes and 12 output nodes that correspond to the 12 notes in a scale. (It also has 1 layer of 12 hidden nodes.) Each index in the preprocessed array containing the total note counts are given to each corresponding
 input node. The 12 output nodes of the neural net are also set up in this same fashion.
 4. The output node with the highest value is the neural net's *guess* as to which note is the root note of the scale.
 Simple post processing is done to find the highest assigned value.
-5. For back propogation, the network is trainied to output a binary answer. By this, it means that if the key signature is
+5. For back propagation, the network is trained to output a binary answer. By this, it means that if the key signature is
 C, the expected output from the network would be `[ 1 0 0 0 0 0 0 0 0 0 0 0 ]` because index 0 maps to C. So the net 
 is then given the *correct answer* of `[ 1 0 0 0 0 0 0 0 0 0 0 0 ]` to learn on for whenever the answer is C.
-6. The network adjusts its weights according to the learning rate in preperation for the next training session.
+6. The network adjusts its weights according to the learning rate in preparation for the next training session.
 7. Repeat.
 
 ## Output
