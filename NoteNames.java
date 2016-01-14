@@ -1,8 +1,9 @@
 /**
+ * Contains all possible keys, using only sharps.
  * @author zakrywilson
  * @since 08/31/2015
  */
-public class NoteNames {
+class NoteNames {
 	
 	String[] A  = new String[]{"A",  "B",  "C#", "D",  "E",  "F#", "G#"};
 	String[] Bb = new String[]{"Bb", "C",  "D",  "Eb", "F",  "G",  "A" };
@@ -15,17 +16,21 @@ public class NoteNames {
 	String[] Gb = new String[]{"Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F" };
 	String[] G  = new String[]{"G",  "A",  "B",  "C",  "D",  "E",  "F#"};
 	String[] Ab = new String[]{"Ab", "Bb", "C",  "Db", "Eb", "Fb", "G" };
-	
+
+
+  /**
+   * Converts note numbers to note names.
+   * @param keyNumber - the key of the song (as an integer value)
+   * @param newSong - the array of notes, comprising a song
+   * @return th
+   */
 	protected static String[] convertToNoteNames(double keyNumber, byte[] newSong) {
 		String[] convertedSong = new String[newSong.length];
 		for (int i = 0; i < newSong.length; i++) {
 		}
 		return convertedSong;
 	}
-	
-//	private static String[] setOfNoteNames() {
-//		
-//	}
+
 
 	/**
 	 * Used for testing

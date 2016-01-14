@@ -1,8 +1,9 @@
 /**
+ * Handles getting new songs for the neural net to process.
  * @author zakrywilson
  * @since 08/31/2015
  */
-public class NetsPreprocessing {
+class NetsPreprocessing {
 
 	/**
 	 * Takes a <code>byte[]</code> and returns the 
@@ -11,7 +12,7 @@ public class NetsPreprocessing {
 	 * @param notes
 	 * @return <code>double</code> array containing frequencies of each note
 	 */
-	protected static double[] getFrequencies(byte[] notes) {
+	static double[] getFrequencies(byte[] notes) {
 		
 		double[] frequencies = new double[12];
 		
@@ -44,7 +45,7 @@ public class NetsPreprocessing {
 	 * Prints out the frequencies
 	 * @param song
 	 */
-	protected static void printFrequenciesAndKey(Song song) {
+	private static void printFrequenciesAndKey(Song song) {
 		
 		double[] frequencies = getFrequencies(song.getSong());
 		

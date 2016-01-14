@@ -1,10 +1,11 @@
 import java.util.Random;
 
 /**
+ * Handles the generation of new songs.
  * @author zakrywilson
  * @since 08/31/2015
  */
-public class Song {
+class Song {
 
 	private byte[] song;
 	private byte key;
@@ -12,35 +13,35 @@ public class Song {
 	/**
 	 * Creates a new random series of notes (song) based on a randomly generated key.
 	 */
-	protected Song() {
+	Song() {
 		song = transpose(generateNotes());
 	}
 
 	/**
 	 * @return a new song
 	 */
-	protected byte[] getSong() {
+	byte[] getSong() {
 		return song;
 	}
 	
 	/**
 	 * @return key of the song
 	 */
-	protected double getKeyOfSong() {
+	double getKeyOfSong() {
 		return (double) key;
 	}
 	
 	/**
 	 * @return <code>int</code> array of the frequency each note is played
 	 */
-	protected double[] getFrequencies() {
+	double[] getFrequencies() {
 		return NetsPreprocessing.getFrequencies(this.song);
 	}
 
 	/**
 	 * @return series of random notes
 	 */
-	protected byte[] generateNotes() {
+	private byte[] generateNotes() {
 
 		byte[] notesWithinKey = new byte[getSongLength()];
 
@@ -77,7 +78,7 @@ public class Song {
 	 * @param notes
 	 * @return transposed notes
 	 */
-	protected byte[] transpose(byte[] notes) {
+	private byte[] transpose(byte[] notes) {
 
 		generateRandomKey();
 
@@ -85,7 +86,7 @@ public class Song {
 
 			// note 0
 			if (notes[i] == 0) {
-				notes[i] = (byte) ((0 + key) % 12);
+				notes[i] = (byte) ((key) % 12);
 			}
 			// note 1
 			else if (notes[i] == 1) {

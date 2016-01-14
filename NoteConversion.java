@@ -1,13 +1,14 @@
 /**
+ * Handles all note conversions from numerical representations to alphabetical representations.
  * @author zakrywilson
  * @since 09/03/15
  */
-public class NoteConversion {
+class NoteConversion {
 
-	protected static final String[] noteLetters = {"C", "C#/Db", "D", "D#/Eb",
+	private static final String[] noteLetters = {"C", "C#/Db", "D", "D#/Eb",
 			"E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"};
 
-	protected static String convertNumbersToLetters(double value) {
+	static String convertNumbersToLetters(double value) {
 		
 		int number = (int) value;
 		
