@@ -1,5 +1,3 @@
-package musicTheory;
-
 import java.util.Random;
 
 /**

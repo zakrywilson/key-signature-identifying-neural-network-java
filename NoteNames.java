@@ -1,5 +1,3 @@
-package musicTheory;
-
 /**
  * @author zakrywilson
  * @since 08/31/2015

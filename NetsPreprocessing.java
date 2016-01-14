@@ -1,5 +1,3 @@
-package musicTheory;
-
 /**
  * @author zakrywilson
  * @since 08/31/2015
@@ -9,7 +7,7 @@ public class NetsPreprocessing {
 	/**
 	 * Takes a <code>byte[]</code> and returns the 
 	 * frequency of each note in a <code>double</code> array
-	 * 
+	 *
 	 * @param notes
 	 * @return <code>double</code> array containing frequencies of each note
 	 */
@@ -27,7 +25,7 @@ public class NetsPreprocessing {
 	/**
 	 * Takes a <code>double[]</code> and returns the 
 	 * frequency of each note in a <code>double</code> array
-	 * 
+	 *
 	 * @param notes
 	 * @return <code>double</code> array containing frequencies of each note
 	 */

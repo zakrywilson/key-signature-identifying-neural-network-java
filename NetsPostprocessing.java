@@ -1,5 +1,3 @@
-package musicTheory;
-
 public class NetsPostprocessing {
 	
 	/**
