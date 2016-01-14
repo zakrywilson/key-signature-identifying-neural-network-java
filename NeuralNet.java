@@ -5,7 +5,7 @@ import java.util.Random;
  * @author zakrywilson
  * @since 09/03/15
  */
-public class MusicTheoryNets {
+public class NeuralNet {
 
   // Constants
   protected static final int GUESS = 0;
@@ -25,7 +25,7 @@ public class MusicTheoryNets {
   /**
    * Constructor: initializes Random object
    */
-  public MusicTheoryNets() {
+  public NeuralNet() {
     this.random = new Random(System.currentTimeMillis() * System.currentTimeMillis());
   }
 
@@ -122,7 +122,7 @@ public class MusicTheoryNets {
 
 
   public static void main(String[] args) {
-    MusicTheoryNets net = new MusicTheoryNets();
+    NeuralNet net = new NeuralNet();
 
     System.out.println("Neural Network Program\n");
 

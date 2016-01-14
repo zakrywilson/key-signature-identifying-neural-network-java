@@ -38,8 +38,8 @@ public class NetsPostprocessing {
 	 * @return net's guess
 	 */
 	protected static double interpretResults(double values[]) {
-		int index = MusicTheoryNets.NUM_NODES - MusicTheoryNets.NUM_OUTPUT_NODES + 1;
-		double offset = MusicTheoryNets.NUM_NODES - MusicTheoryNets.NUM_OUTPUT_NODES;
+		int index = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES + 1;
+		double offset = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES;
 		double guess = values[index - 1];
 		double note = index - 1.0;
 		double val = 0.0;
@@ -61,7 +61,7 @@ public class NetsPostprocessing {
 	 * @return net's guess
 	 */
 	protected static double interpretResultsAddition(double values[]) {
-		int index = MusicTheoryNets.NUM_NODES - MusicTheoryNets.NUM_OUTPUT_NODES + 1;
+		int index = NeuralNet.NUM_NODES - NeuralNet.NUM_OUTPUT_NODES + 1;
 		double val = 0.0;
 		
 		while (index < values.length) {
@@ -86,11 +86,11 @@ public class NetsPostprocessing {
 	protected static void displayNetwork(double correctAnswer, double results[]) {
 		String s = " ";
 		
-		if (correctAnswer == results[MusicTheoryNets.GUESS]) s = "+";
+		if (correctAnswer == results[NeuralNet.GUESS]) s = "+";
 		
 		System.out.println("------------------------------------------------------------------------");
 		System.out.print  ("answer:\t" + NoteConversion.convertNumbersToLetters(correctAnswer));
-		System.out.print  ("\t|\tnet's guess:\t" + NoteConversion.convertNumbersToLetters(results[MusicTheoryNets.GUESS]));
-		System.out.printf ("\t|\terr:\t%8.5f  %s\n", results[MusicTheoryNets.ERROR] , s);
+		System.out.print  ("\t|\tnet's guess:\t" + NoteConversion.convertNumbersToLetters(results[NeuralNet.GUESS]));
+		System.out.printf ("\t|\terr:\t%8.5f  %s\n", results[NeuralNet.ERROR] , s);
 	}
 }
