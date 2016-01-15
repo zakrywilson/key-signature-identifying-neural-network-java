@@ -3,7 +3,7 @@
  * @author zakrywilson
  * @since 08/31/2015
  */
-class NetsPostprocessing {
+class PostProcessing {
 	
 	/**
 	 * Takes the key of the song and constructs a <code>double[]</code>
@@ -47,7 +47,7 @@ class NetsPostprocessing {
 		double offset = index - 1;
 		double guess = values[index - 1];
 		double note = index - 1.0;
-		double val = 0.0;
+		double val;
 
 		while (index < values.length) {
 			val = values[index];

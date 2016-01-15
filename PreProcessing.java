@@ -3,47 +3,37 @@
  * @author zakrywilson
  * @since 08/31/2015
  */
-class NetsPreprocessing {
+class PreProcessing {
 
 	/**
 	 * Takes a <code>byte[]</code> and returns the 
-	 * frequency of each note in a <code>double</code> array
-	 *
-	 * @param notes
+	 * frequency of each note in a <code>double</code> array.
+	 * @param notes - all the notes in the song
 	 * @return <code>double</code> array containing frequencies of each note
 	 */
 	static double[] getFrequencies(byte[] notes) {
-		
 		double[] frequencies = new double[12];
-		
-		for (int i = 0; i < notes.length; i++) {
-			frequencies[notes[i]]++;
-		}
-		
-		return frequencies;
+    for (byte note : notes)
+      frequencies[note]++;
+    return frequencies;
 	}
 	
 	/**
 	 * Takes a <code>double[]</code> and returns the 
-	 * frequency of each note in a <code>double</code> array
-	 *
-	 * @param notes
+	 * frequency of each note in a <code>double</code> array.
+	 * @param notes - all the notes in the song
 	 * @return <code>double</code> array containing frequencies of each note
 	 */
 	protected static double[] getFrequencies(double[] notes) {
-		
 		double[] frequencies = new double[12];
-		
-		for (int i = 0; i < notes.length; i++) {
-			frequencies[(int) notes[i]]++;
-		}
-		
+		for (double note : notes)
+      frequencies[(int) note]++;
 		return frequencies;
 	}
 	
 	/**
-	 * Prints out the frequencies
-	 * @param song
+	 * Prints out the frequencies.
+	 * @param song - a song
 	 */
 	private static void printFrequenciesAndKey(Song song) {
 		
@@ -66,12 +56,11 @@ class NetsPreprocessing {
 	}
 	
 	/**
-	 * Used for testing
-	 * @param args
+	 * Used for testing.
+	 * @param args - args not used
 	 */
 	public static void main(String[] args) {
 		Song song = new Song();
 		printFrequenciesAndKey(song);
 	}
-
 }
