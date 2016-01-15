@@ -8,13 +8,17 @@ import java.util.Random;
 class Song {
 
 	private byte[] song;
-	private byte key;
-	
+	private int key;
+  private Random random;
+
+
 	/**
 	 * Creates a new random series of notes (song) based on a randomly generated key.
 	 */
 	Song() {
-		song = transpose(generateNotes());
+    random = new Random();
+    key = generateRandomKey();
+		song = generateRandomSong();
 	}
 
 	/**
@@ -35,8 +39,15 @@ class Song {
 	 * @return <code>int</code> array of the frequency each note is played
 	 */
 	double[] getFrequencies() {
-		return NetsPreprocessing.getFrequencies(this.song);
+		return PreProcessing.getFrequencies(this.song);
 	}
+
+  /**
+   * @return a new random song based on the key
+   */
+  private byte[] generateRandomSong() {
+    return transpose(generateNotes());
+  }
 
 	/**
 	 * @return series of random notes
@@ -55,20 +66,17 @@ class Song {
 
 	/**
 	 * Generates a random number--number of notes in a song
-	 * 
 	 * @return the random number between 100 and 10,000
 	 */
 	private int getSongLength() {
-		Random randomLength = new Random();
-		return randomLength.nextInt(990) + 10;
+		return random.nextInt(990) + 10;
 	}
 
 	/**
 	 * @return a random note between 0 and 6
 	 */
 	private byte generateRandomNote() {
-		Random randomNote = new Random();
-		return (byte) randomNote.nextInt(7);
+		return (byte) random.nextInt(7);
 	}
 
 	/**
@@ -79,8 +87,6 @@ class Song {
 	 * @return transposed notes
 	 */
 	private byte[] transpose(byte[] notes) {
-
-		generateRandomKey();
 
 		for (int i = 0; i < notes.length; i++) {
 
@@ -122,12 +128,9 @@ class Song {
 
 	/**
 	 * Generates a random key, denoted by a number between 0 and 11
-	 * 
-	 * @return
 	 * @return a random key
 	 */
-	private void generateRandomKey() {
-		Random randomKey = new Random();
-		key = (byte) randomKey.nextInt(12);
+	private int generateRandomKey() {
+		return random.nextInt(12);
 	}
 }
