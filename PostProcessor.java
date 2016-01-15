@@ -3,13 +3,13 @@
  * @author zakrywilson
  * @since 08/31/2015
  */
-class PostProcessing {
+class PostProcessor {
 	
 	/**
 	 * Takes the key of the song and constructs a <code>double[]</code>
 	 * that contains the correct pattern (w-w-h-w-w-w-h) so the network
 	 * can accurately gauge how close it was in weighing possible answers.
-	 * @param correctAnswer
+	 * @param correctAnswer - the correct answer (key)
 	 * @return an array that contains all the correct answers for the net's output
 	 */
 	protected static double[] computeExpectedScale(double correctAnswer) {
@@ -94,8 +94,8 @@ class PostProcessing {
 		if (correctAnswer == results[NeuralNet.GUESS]) s = "+";
 		
 		System.out.println("------------------------------------------------------------------------");
-		System.out.print  ("answer:\t" + NoteConversion.convertNumbersToLetters(correctAnswer));
-		System.out.print  ("\t|\tnet's guess:\t" + NoteConversion.convertNumbersToLetters(results[NeuralNet.GUESS]));
+		System.out.print  ("answer:\t" + Conversions.convertNumbersToLetters(correctAnswer));
+		System.out.print  ("\t|\tnet's guess:\t" + Conversions.convertNumbersToLetters(results[NeuralNet.GUESS]));
 		System.out.printf ("\t|\terr:\t%8.5f  %s\n", results[NeuralNet.ERROR] , s);
 	}
 }

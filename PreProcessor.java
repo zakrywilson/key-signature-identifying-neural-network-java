@@ -3,7 +3,7 @@
  * @author zakrywilson
  * @since 08/31/2015
  */
-class PreProcessing {
+class PreProcessor {
 
 	/**
 	 * Takes a <code>byte[]</code> and returns the 
