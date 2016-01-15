@@ -89,10 +89,7 @@ class PostProcessor {
 	 * @param results
 	 */
 	static void displayNetwork(double correctAnswer, double results[]) {
-		String s = " ";
-		
-		if (correctAnswer == results[NeuralNet.GUESS]) s = "+";
-		
+		String s = (correctAnswer == results[NeuralNet.GUESS]) ? "+" : " ";
 		System.out.println("------------------------------------------------------------------------");
 		System.out.print  ("answer:\t" + Conversions.convertNumbersToLetters(correctAnswer));
 		System.out.print  ("\t|\tnet's guess:\t" + Conversions.convertNumbersToLetters(results[NeuralNet.GUESS]));
