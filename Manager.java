@@ -6,12 +6,13 @@
 class Manager {
 
   /**
-   * Main.
-   * Gets instance of
+   * Main: runs program.
    * @param args - args not used
    */
   public static void main(String[] args) {
     NeuralNet net = NeuralNet.getInstance();
+    net.setIterations(10000000);
+    net.configure(12, 12, 12);
     net.run();
   }
 }
