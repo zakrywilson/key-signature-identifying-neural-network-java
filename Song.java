@@ -39,7 +39,7 @@ class Song {
 	 * @return <code>int</code> array of the frequency each note is played
 	 */
 	double[] getFrequencies() {
-		return PreProcessing.getFrequencies(this.song);
+		return PreProcessor.getFrequencies(this.song);
 	}
 
   /**
