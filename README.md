@@ -35,10 +35,10 @@ is then given the *correct answer* of `[ 1 0 0 0 0 0 0 0 0 0 0 0 ]` to learn on 
   * The correct answer
   * The standard error
   * And a `+` sign if the network was correct
-  * [Here](http://i.imgur.com/2QhDqRl.png) is an example of 
-  the output after 10 million training sessions.
+  * [Here](http://i.imgur.com/2QhDqRl.png) is an example of the output after 10 million training sessions 
+  with a learning rate of 0.18.
 
 ## Notes
-* **This project has not been tested on real data. Results from testing with real data will come soon.**
-* The default learning rate is `.18` and the default number of training sessions is `10,000,000`.  
-This can be changed in `Manager.java`.
+* **This project has not been tested on real data. Results from testing with real data will come.**
+* The default learning rate is `0.18` and the default number of training sessions is `10,000,000`. 
+These settings can be changed in `Manager.java`.
