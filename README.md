@@ -4,7 +4,9 @@ A neural network that can learn identify the key signature of a given melody.
 ## How to run
 
 `> cd ~/path/to/key-signature-identifying-neural-network-java`
+
 `> javac *java`
+
 `> java Manager`
 
 ## How it works
