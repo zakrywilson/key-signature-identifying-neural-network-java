@@ -13,6 +13,7 @@ class Song {
 
 
   /**
+   * Default constructor.
    * Creates a new random series of notes (song) based on a randomly generated key.
    */
   Song() {
