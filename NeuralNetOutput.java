@@ -6,20 +6,17 @@
 class NeuralNetOutput {
 
   private double guess;
-  private double answer;
   private double error;
 
 
   /**
    * Constructor.
-   * @param netGuess - the guess the neural network made
-   * @param correctAnswer - the correct answer (the key of the song)
-   * @param netError - the total error
+   * @param neuralNetworkGuess - the guess the neural network made
+   * @param neuralNetworkError - the total error
    */
-  NeuralNetOutput(final double netGuess, final double correctAnswer, final double netError) {
-    this.guess = netGuess;
-    this.answer = correctAnswer;
-    this.error = netError;
+  NeuralNetOutput(final double neuralNetworkGuess, final double neuralNetworkError) {
+    this.guess = neuralNetworkGuess;
+    this.error = neuralNetworkError;
   }
 
   /**
@@ -28,14 +25,6 @@ class NeuralNetOutput {
    */
   double getGuess() {
     return this.guess;
-  }
-
-  /**
-   * Gets the correct answer.
-   * @return correct answer
-   */
-  double getAnswer() {
-    return this.answer;
   }
 
   /**

@@ -46,7 +46,6 @@ class NeuralNet {
    */
   NeuralNetOutput run(final Song song) {
 
-    final double correctAnswer = song.getKeyOfSong();
     values = Arrays.copyOf(song.getFrequencies(), totalNodes);
 
     // run training for the network
@@ -54,7 +53,7 @@ class NeuralNet {
 
     double error = updateWeights(song.getExpectedOutput());
     double guess = interpretResults();
-    return new NeuralNetOutput(guess, correctAnswer, error);
+    return new NeuralNetOutput(guess, error);
   }
 
   /**

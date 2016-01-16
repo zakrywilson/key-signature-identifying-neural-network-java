@@ -13,10 +13,11 @@ class Manager {
     int maxIterations = 10000000;
     NeuralNet net = new NeuralNet(12, 12, 12, 0.18);
 
+    // Train neural network for x iterations
     for (int iterations = 0; iterations < maxIterations; ++iterations) {
       Song song = new Song();
       NeuralNetOutput output = net.run(song);
-      displayResults(output);
+      displayResults(song, output);
     }
   }
 
@@ -24,9 +25,9 @@ class Manager {
    * Displays the results: the key of the song, the neural network's guess, and its error.
    * @param output - output results from the neural net
    */
-  private static void displayResults(final NeuralNetOutput output) {
+  private static void displayResults(final Song song, final NeuralNetOutput output) {
     double guess = output.getGuess();
-    double answer = output.getAnswer();
+    double answer = song.getKeyOfSong();
     double error = output.getError();
 
     String s = (answer == guess) ? "+" : " ";
