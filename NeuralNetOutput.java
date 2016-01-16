@@ -16,7 +16,7 @@ class NeuralNetOutput {
    * @param correctAnswer - the correct answer (the key of the song)
    * @param netError - the total error
    */
-  NeuralNetOutput(double netGuess, double correctAnswer, double netError) {
+  NeuralNetOutput(final double netGuess, final double correctAnswer, final double netError) {
     this.guess = netGuess;
     this.answer = correctAnswer;
     this.error = netError;
