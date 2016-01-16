@@ -11,10 +11,9 @@ class Processor {
 	 * @param correctAnswer - the key of the song (expected answer)
 	 * @return an array that contains all the correct answers for the net's output
 	 */
-	static double[] getExpectedAnswer(double correctAnswer) {
+	static double[] getExpectedResults(double correctAnswer) {
 		double[] expectedAnswers = new double[12];
 		expectedAnswers[(int) correctAnswer] = 1.0;
-
 		return expectedAnswers;
 	}
 
