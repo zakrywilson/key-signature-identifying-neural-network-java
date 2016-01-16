@@ -30,7 +30,7 @@ class PostProcessor {
 	 * @param correctAnswer
 	 * @return an array that contains all the correct answers for the net's output
 	 */
-	static double[] computeExpectedAnswer(double correctAnswer) {
+	static double[] getExpectedAnswer(double correctAnswer) {
 		double[] expectedAnswers = new double[12];
 		expectedAnswers[(int) correctAnswer] = 1.0;
 		
@@ -59,40 +59,18 @@ class PostProcessor {
 		}
 		return note - offset;
 	}
-	
-	/**
-	 * Finds the highest scored note in <code>values[]</code> and returns that note.
-	 * @param values
-	 * @return net's guess
-	 */
-	protected static double interpretResultsAddition(double values[]) {
-		int index = NeuralNet.sizeOfNetwork() - NeuralNet.sizeOfOutputLayer() + 1;
-		double val = 0.0;
-		
-		while (index < values.length) {
-			val += values[index];
-			index++;
-		}
-		
-		return val / 12;
-	}
-	
-	protected static double findResult(double values[]) {
-		double guess = values[values.length - 1]; // get last value: output node
-		guess *= 12;
-		return Math.round(guess) - 1;
-	}
-	
+
 	/**
 	 * Displays the results as letters, not numbers
-	 * @param correctAnswer
-	 * @param results
+	 * @param correctAnswer - the correct answer (key of the song)
+	 * @param guess - the guess the neural net made
+	 * @param error - the error of the neural net
 	 */
-	static void displayNetwork(double correctAnswer, double results[]) {
-		String s = (correctAnswer == results[NeuralNet.GUESS]) ? "+" : " ";
+	static void displayResults(double correctAnswer, double guess, double error) {
+		String s = (correctAnswer == guess) ? "+" : " ";
 		System.out.println("------------------------------------------------------------------------");
-		System.out.print  ("answer:\t" + Conversions.convertNumbersToLetters(correctAnswer));
-		System.out.print  ("\t|\tnet's guess:\t" + Conversions.convertNumbersToLetters(results[NeuralNet.GUESS]));
-		System.out.printf ("\t|\terr:\t%8.5f  %s\n", results[NeuralNet.ERROR] , s);
+		System.out.print  ("answer:\t" + Conversions.numbersToLetters(correctAnswer));
+		System.out.print  ("\t|\tnet's guess:\t" + Conversions.numbersToLetters(guess));
+		System.out.printf ("\t|\terr:\t%8.5f  %s\n", error , s);
 	}
 }
