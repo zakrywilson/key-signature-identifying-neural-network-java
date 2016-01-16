@@ -29,9 +29,8 @@ class Song {
   }
 
   /**
-   * Takes a <code>byte[]</code> and returns the
-   * frequency of each note in a <code>double</code> array.
-   * @return <code>double</code> array containing frequencies of each note
+   * Takes a byte array and returns the frequency of each note in an array of doubles.
+   * @return array of doubles containing frequencies of each note
    */
   double[] getFrequencies() {
     double[] frequencies = new double[12];
@@ -41,8 +40,7 @@ class Song {
   }
 
   /**
-   * Takes the key of the song and assigns that index to 1
-   * while keeping the rest of the indexes at 0.
+   * Takes the key of the song and assigns that index to 1 while keeping the rest of the indexes at 0.
    * @return an array that contains all the correct answers for the net's output
    */
   double[] getExpectedOutput() {
@@ -52,6 +50,7 @@ class Song {
   }
 
   /**
+   * Creates a new random series of notes based on the key signature.
    * @return a new random song based on the key
    */
   private byte[] generateRandomSong() {
@@ -59,39 +58,7 @@ class Song {
   }
 
   /**
-   * @return series of random notes
-   */
-  private byte[] generateNotes() {
-
-    byte[] notesWithinKey = new byte[getSongLength()];
-
-    // for every index in notes, we insert a random note number
-    for (int note = 0; note < notesWithinKey.length; note++) {
-      notesWithinKey[note] = generateRandomNote();
-    }
-
-    return notesWithinKey;
-  }
-
-  /**
-   * Generates a random number--number of notes in a song
-   * @return the random number between 100 and 10,000
-   */
-  private int getSongLength() {
-    return random.nextInt(990) + 10;
-  }
-
-  /**
-   * @return a random note between 0 and 6
-   */
-  private byte generateRandomNote() {
-    return (byte) random.nextInt(7);
-  }
-
-  /**
-   * Changes notes from being 0-6 to being a set
-   * within all possible notes (0-11)
-   *
+   * Changes notes from being 0-6 to being a set within all possible notes (0-11).
    * @param notes - all notes in the song
    * @return transposed notes
    */
@@ -136,7 +103,39 @@ class Song {
   }
 
   /**
-   * Generates a random key, denoted by a number between 0 and 11
+   * Generates the series of random notes.
+   * @return series of random notes
+   */
+  private byte[] generateNotes() {
+
+    byte[] notesWithinKey = new byte[getSongLength()];
+
+    // for every index in notes, we insert a random note number
+    for (int note = 0; note < notesWithinKey.length; note++) {
+      notesWithinKey[note] = generateRandomNote();
+    }
+
+    return notesWithinKey;
+  }
+
+  /**
+   * Generates a random number--number of notes in a song.
+   * @return the random number between 100 and 10,000
+   */
+  private int getSongLength() {
+    return random.nextInt(990) + 10;
+  }
+
+  /**
+   * Generates a random note between 0 and 6.
+   * @return a random note between 0 and 6
+   */
+  private byte generateRandomNote() {
+    return (byte) random.nextInt(7);
+  }
+
+  /**
+   * Generates a random key, denoted by a number between 0 and 11.
    * @return a random key
    */
   private int generateRandomKey() {
