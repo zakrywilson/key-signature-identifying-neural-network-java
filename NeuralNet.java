@@ -52,10 +52,10 @@ class NeuralNet {
     // run training for the network
     activateNetwork();
 
-    double error = updateWeights(Processor.getExpectedResults(correctAnswer));
+    double error = updateWeights(song.getExpectedOutput());
     double guess = interpretResults();
     return new NeuralNetOutput(guess, correctAnswer, error);
-}
+  }
 
   /**
    * Initializes neural network characteristics: weights, thresholds, etc.

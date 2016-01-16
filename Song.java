@@ -41,6 +41,17 @@ class Song {
   }
 
   /**
+   * Takes the key of the song and assigns that index to 1
+   * while keeping the rest of the indexes at 0.
+   * @return an array that contains all the correct answers for the net's output
+   */
+  double[] getExpectedOutput() {
+    double[] expectedAnswers = new double[12];
+    expectedAnswers[key] = 1.0;
+    return expectedAnswers;
+  }
+
+  /**
    * @return a new random song based on the key
    */
   private byte[] generateRandomSong() {
