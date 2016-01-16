@@ -10,9 +10,13 @@ class Manager {
    * @param args - args not used
    */
   public static void main(String[] args) {
-    NeuralNet net = NeuralNet.getInstance();
-    net.setIterations(10000000);
-    net.configure(12, 12, 12);
-    net.run();
+    int maxIterations = 10000000;
+    NeuralNet net = new NeuralNet(12, 12, 12);
+
+    for (int iterations = 0; iterations < maxIterations; ++iterations) {
+      Song song = new Song();
+      NeuralNetOutput output = net.train(song);
+      Processor.displayResults(output);
+    }
   }
 }

@@ -35,12 +35,17 @@ class Song {
 		return (double) key;
 	}
 	
-	/**
-	 * @return <code>int</code> array of the frequency each note is played
-	 */
-	double[] getFrequencies() {
-		return PreProcessor.getFrequencies(this.song);
-	}
+  /**
+   * Takes a <code>byte[]</code> and returns the
+   * frequency of each note in a <code>double</code> array.
+   * @return <code>double</code> array containing frequencies of each note
+   */
+  double[] getFrequencies() {
+    double[] frequencies = new double[12];
+    for (byte note : this.song)
+      frequencies[note]++;
+    return frequencies;
+  }
 
   /**
    * @return a new random song based on the key

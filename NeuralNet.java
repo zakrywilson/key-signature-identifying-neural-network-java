@@ -24,91 +24,47 @@ class NeuralNet {
   private static final double LEARNING_RATE = 0.18;
 
   // Optional network configurations with default values
-  private static int maxIterations;
-  private static int inputNodes;
-  private static int hiddenNodes;
-  private static int outputNodes;
-  private static int totalNodes;
+  private int inputNodes;
+  private int hiddenNodes;
+  private int outputNodes;
+  private int totalNodes;
 
 
   /**
    * Constructor.
    */
-  private NeuralNet() {
-    random = new Random(System.currentTimeMillis() * System.currentTimeMillis());
-  }
-
-  /**
-   * Singleton.
-   * @return instance of NeuralNet
-   */
-  static NeuralNet getInstance() {
-    return (instance == null) ? new NeuralNet() : instance;
-  }
-
-  /**
-   * Sets the number of nodes for each layer in the neural net.
-   * @param numberOfInputNodes - number of input nodes
-   * @param numberOfHiddenNodes - number of hidden nodes
-   * @param numberOfOutputNodes - number of output nodes
-   */
-  void configure(final int numberOfInputNodes,
-                 final int numberOfHiddenNodes,
-                 final int numberOfOutputNodes) {
-    inputNodes = numberOfInputNodes;
-    hiddenNodes = numberOfHiddenNodes;
-    outputNodes = numberOfOutputNodes;
-    totalNodes = inputNodes + hiddenNodes + outputNodes;
-  }
-
-  /**
-   * Set number of iterations.
-   * @param iterations - max number of iterations
-   */
-  void setIterations(final int iterations) {
-    maxIterations = iterations;
+  NeuralNet(final int sizeOfInputLayer, final int sizeOfHiddenLayer, final int sizeOfOutputLayer) {
+    inputNodes = sizeOfInputLayer;
+    hiddenNodes = sizeOfHiddenLayer;
+    outputNodes = sizeOfOutputLayer;
+    init();
   }
 
   /**
    * Runs the neural network through it's number of iterations.
    */
-  void run() {
+  NeuralNetOutput train(Song song) {
 
+    final double correctAnswer = song.getKeyOfSong();
+    values = Arrays.copyOf(song.getFrequencies(), totalNodes);
+
+    // run training for the network
+    activateNetwork();
+
+    double error = updateWeightsAndGetResults(Processor.getExpectedAnswer(correctAnswer));
+    double guess = interpretResults();
+    return new NeuralNetOutput(guess, correctAnswer, error);
+}
+
+  /**
+   * Initializes neural network characteristics.
+   */
+  private void init() {
+    totalNodes = inputNodes + hiddenNodes + outputNodes;
+    random = new Random(System.currentTimeMillis() * System.currentTimeMillis());
     weights = new double[totalNodes][totalNodes];
     thresholds = new double[totalNodes];
-
     connectNodes();
-
-    for (int iteration = 0; iteration < maxIterations; iteration++) {
-
-      // get and set new test data
-      Song song = new Song();
-      final double correctAnswer = song.getKeyOfSong();
-      values = Arrays.copyOf(song.getFrequencies(), totalNodes);
-
-      // run training for the network
-      activateNetwork();
-
-      double error = updateWeightsAndGetResults(PostProcessor.getExpectedAnswer(correctAnswer));
-      double guess = PostProcessor.interpretResults(values);
-      PostProcessor.displayResults(correctAnswer, guess, error);
-    }
-  }
-
-  /**
-   * Gets the number of output nodes in the network.
-   * @return number of output nodes
-   */
-  static int sizeOfOutputLayer() {
-    return outputNodes;
-  }
-
-  /**
-   * Gets the total number of nodes in the network.
-   * @return total number of nodes in network
-   */
-  static int sizeOfNetwork() {
-    return inputNodes + hiddenNodes + outputNodes;
   }
 
   /**
@@ -195,5 +151,27 @@ class NeuralNet {
       thresholds[o] += delta;
     }
     return error;
+  }
+
+  /**
+   * Finds the highest scored note in <code>values[]</code> and returns that note.
+   * @return net's guess
+   */
+  private double interpretResults() {
+    int index = totalNodes - outputNodes + 1;
+    double offset = index - 1;
+    double guess = values[index - 1];
+    double note = index - 1.0;
+    double val;
+
+    while (index < values.length) {
+      val = values[index];
+      if (val > guess) {
+        guess = val;
+        note = index;
+      }
+      index++;
+    }
+    return note - offset;
   }
 }
