@@ -51,7 +51,7 @@ class NeuralNet {
     // run training for the network
     activateNetwork();
 
-    double error = updateWeightsAndGetResults(Processor.getExpectedAnswer(correctAnswer));
+    double error = updateWeights(Processor.getExpectedResults(correctAnswer));
     double guess = interpretResults();
     return new NeuralNetOutput(guess, correctAnswer, error);
 }
@@ -121,17 +121,17 @@ class NeuralNet {
 
   /**
    * Update weights and get results.
-   * @param expectedAnswer - the correct answer
+   * @param expectedResults - the correct answer for the neural net's output nodes
    * @return <code>result</code> array where index 0 contains the
    *         output and index 1 contains the sum of squared errors
    */
-  private double updateWeightsAndGetResults(double[] expectedAnswer) {
+  private double updateWeights(double[] expectedResults) {
 
     double error = 0.0;
 
     for (int o = inputNodes + hiddenNodes; o < totalNodes; o++) {
 
-      double absoluteError = expectedAnswer[o - inputNodes - hiddenNodes] - values[o];
+      double absoluteError = expectedResults[o - inputNodes - hiddenNodes] - values[o];
       error += (Math.pow(absoluteError, 2)) / inputNodes;
       double outputErrorGradient = values[o] * (1.0 - values[o]) * absoluteError;
 
