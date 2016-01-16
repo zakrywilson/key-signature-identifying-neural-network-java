@@ -43,7 +43,7 @@ class NeuralNet {
    * @param song - a new song to train on
    * @return output - the output containing all relevant results
    */
-  NeuralNetOutput run(Song song) {
+  NeuralNetOutput run(final Song song) {
 
     final double correctAnswer = song.getKeyOfSong();
     values = Arrays.copyOf(song.getFrequencies(), totalNodes);
@@ -125,7 +125,7 @@ class NeuralNet {
    * @return <code>result</code> array where index 0 contains the
    *         output and index 1 contains the sum of squared errors
    */
-  private double updateWeights(double[] expectedResults) {
+  private double updateWeights(final double[] expectedResults) {
 
     double error = 0.0;
 
