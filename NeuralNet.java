@@ -8,10 +8,11 @@ import java.util.Random;
  */
 class NeuralNet {
 
-  // Singleton instance
-  private static NeuralNet instance = null;
-
   // Aspects of the neural network nodes
+  private int inputNodes;
+  private int hiddenNodes;
+  private int outputNodes;
+  private int totalNodes;
   private double[][] weights;
   private double[] values;
   private double[] thresholds;
@@ -23,27 +24,26 @@ class NeuralNet {
   private static final double E = 2.71828;
   private static final double LEARNING_RATE = 0.18;
 
-  // Optional network configurations with default values
-  private int inputNodes;
-  private int hiddenNodes;
-  private int outputNodes;
-  private int totalNodes;
-
 
   /**
    * Constructor.
+   * @param inputNodes - number of nodes in input layer
+   * @param hiddenNodes - number of nodes in hidden layer
+   * @param outputNodes - number of nodes in output layer
    */
-  NeuralNet(final int sizeOfInputLayer, final int sizeOfHiddenLayer, final int sizeOfOutputLayer) {
-    inputNodes = sizeOfInputLayer;
-    hiddenNodes = sizeOfHiddenLayer;
-    outputNodes = sizeOfOutputLayer;
+  NeuralNet(final int inputNodes, final int hiddenNodes, final int outputNodes) {
+    this.inputNodes = inputNodes;
+    this.hiddenNodes = hiddenNodes;
+    this.outputNodes = outputNodes;
     init();
   }
 
   /**
-   * Runs the neural network through it's number of iterations.
+   * Runs through one iteration.
+   * @param song - a new song to train on
+   * @return output - the output containing all relevant results
    */
-  NeuralNetOutput train(Song song) {
+  NeuralNetOutput run(Song song) {
 
     final double correctAnswer = song.getKeyOfSong();
     values = Arrays.copyOf(song.getFrequencies(), totalNodes);
@@ -57,7 +57,7 @@ class NeuralNet {
 }
 
   /**
-   * Initializes neural network characteristics.
+   * Initializes neural network characteristics: weights, thresholds, etc.
    */
   private void init() {
     totalNodes = inputNodes + hiddenNodes + outputNodes;
@@ -71,7 +71,7 @@ class NeuralNet {
    * Gets a random number.
    * @return random integer
    */
-  private int rand() {
+  private int getRandom() {
     return this.random.nextInt(Integer.MAX_VALUE);
   }
 
@@ -80,9 +80,9 @@ class NeuralNet {
    */
   private void connectNodes() {
     for (int x = 0; x < totalNodes; x++) {
-      thresholds[x] = rand() / (double) rand();
+      thresholds[x] = getRandom() / (double) getRandom();
       for (int y = 0; y < totalNodes; y++) {
-        weights[x][y] = (rand() % 200) / 100.0;
+        weights[x][y] = (getRandom() % 200) / 100.0;
       }
     }
   }

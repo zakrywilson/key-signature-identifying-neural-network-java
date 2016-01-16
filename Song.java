@@ -22,13 +22,6 @@ class Song {
 	}
 
 	/**
-	 * @return a new song
-	 */
-	byte[] getSong() {
-		return song;
-	}
-	
-	/**
 	 * @return key of the song
 	 */
 	double getKeyOfSong() {
@@ -88,7 +81,7 @@ class Song {
 	 * Changes notes from being 0-6 to being a set 
 	 * within all possible notes (0-11)
 	 * 
-	 * @param notes
+	 * @param notes - all notes in the song
 	 * @return transposed notes
 	 */
 	private byte[] transpose(byte[] notes) {

@@ -8,7 +8,7 @@ class Processor {
 	/**
 	 * Takes the key of the song and assigns that index to 1
 	 * while keeping the rest of the indexes at 0.
-	 * @param correctAnswer
+	 * @param correctAnswer - the key of the song (expected answer)
 	 * @return an array that contains all the correct answers for the net's output
 	 */
 	static double[] getExpectedAnswer(double correctAnswer) {

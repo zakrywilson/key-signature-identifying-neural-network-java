@@ -3,7 +3,7 @@
  * @author zakrywilson
  * @since 01/15/16
  */
-public class NeuralNetOutput {
+class NeuralNetOutput {
 
   private double guess;
   private double answer;

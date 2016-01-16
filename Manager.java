@@ -15,7 +15,7 @@ class Manager {
 
     for (int iterations = 0; iterations < maxIterations; ++iterations) {
       Song song = new Song();
-      NeuralNetOutput output = net.train(song);
+      NeuralNetOutput output = net.run(song);
       Processor.displayResults(output);
     }
   }
