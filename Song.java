@@ -23,6 +23,7 @@ class Song {
   }
 
   /**
+   * Getter for the key signature of the song.
    * @return key of the song
    */
   double getKeyOfSong() {
