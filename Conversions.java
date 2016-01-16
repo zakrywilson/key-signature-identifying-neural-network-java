@@ -5,6 +5,9 @@
  */
 class Conversions {
 
+  /**
+   * All note names in their respective order.
+   */
   private static final String[] noteLetters = {
     "C    ",
     "C#/Db",
@@ -20,6 +23,11 @@ class Conversions {
     "B    "
   };
 
+  /**
+   * Takes a single note number and converts it to its respective letter.
+   * @param value - the numerical representation of the note letter
+   * @return note letter
+   */
   static String numbersToLetters(double value) {
     int number = (int) value;
     if (number < 0 || number > 11) {
