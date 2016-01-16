@@ -17,7 +17,7 @@ class NeuralNet {
   private double[] thresholds;
 
   // Random instance
-  private Random random = null;
+  private Random random;
 
   // Constants
   private static final double E = 2.71828;
@@ -29,10 +29,6 @@ class NeuralNet {
   private static int hiddenNodes;
   private static int outputNodes;
   private static int totalNodes;
-
-  // Improves readability for result array
-  static final int GUESS = 0;
-  static final int ERROR = 1;
 
 
   /**
@@ -87,21 +83,15 @@ class NeuralNet {
 
       // get and set new test data
       Song song = new Song();
-      double[] results = new double[2];
       final double correctAnswer = song.getKeyOfSong();
-
       values = Arrays.copyOf(song.getFrequencies(), totalNodes);
 
       // run training for the network
       activateNetwork();
 
-      // save error and net's guess: [0]: guess & [1]: error
-      double[] expectedAnswers = PostProcessor.computeExpectedAnswer(correctAnswer);
-      results[ERROR] = updateWeightsAndGetResults(expectedAnswers);
-
-      // determine the net's guess and display results
-      results[GUESS] = PostProcessor.interpretResults(values);
-      PostProcessor.displayNetwork(correctAnswer, results);
+      double error = updateWeightsAndGetResults(PostProcessor.getExpectedAnswer(correctAnswer));
+      double guess = PostProcessor.interpretResults(values);
+      PostProcessor.displayResults(correctAnswer, guess, error);
     }
   }
 
