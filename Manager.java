@@ -1,12 +1,12 @@
 /**
- * Runs the training of the neural network
+ * Runs the training of the neural network.
  * @author zakrywilson
  * @since 01/14/16
  */
 class Manager {
 
   /**
-   * Main: runs program.
+   * Main: runs program by training neural network over a specified amount of iterations.
    * @param args - args not used
    */
   public static void main(String[] args) {
