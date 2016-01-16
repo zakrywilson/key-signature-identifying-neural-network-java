@@ -68,15 +68,7 @@ class NeuralNet {
   }
 
   /**
-   * Gets a random number.
-   * @return random integer
-   */
-  private int getRandom() {
-    return this.random.nextInt(Integer.MAX_VALUE);
-  }
-
-  /**
-   * This function lets us set random default values for the network to iterate on.
+   * Sets random default values for the network to iterate over.
    */
   private void connectNodes() {
     for (int x = 0; x < totalNodes; x++) {
@@ -122,8 +114,7 @@ class NeuralNet {
   /**
    * Update weights and get results.
    * @param expectedResults - the correct answer for the neural net's output nodes
-   * @return <code>result</code> array where index 0 contains the
-   *         output and index 1 contains the sum of squared errors
+   * @return results array (where index 0 contains output and index 1 contains sum of squared errors)
    */
   private double updateWeights(final double[] expectedResults) {
 
@@ -154,8 +145,8 @@ class NeuralNet {
   }
 
   /**
-   * Finds the highest scored note in <code>values[]</code> and returns that note.
-   * @return net's guess
+   * Finds the highest ranked note in values array and returns that note.
+   * @return neural network's guess
    */
   private double interpretResults() {
     int index = totalNodes - outputNodes + 1;
@@ -173,5 +164,13 @@ class NeuralNet {
       index++;
     }
     return note - offset;
+  }
+
+  /**
+   * Gets a random number.
+   * @return random integer
+   */
+  private int getRandom() {
+    return this.random.nextInt(Integer.MAX_VALUE);
   }
 }
