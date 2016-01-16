@@ -5,8 +5,9 @@
  */
 class Conversions {
 
-	private static final String[] noteLetters = {"C", "C#/Db", "D", "D#/Eb",
-			"E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"};
+	private static final String[] noteLetters = {"C    ", "C#/Db", "D    ", "D#/Eb",
+		 																				   "E    ", "F    ", "F#/Gb", "G    ",
+		                                           "G#/Ab", "A    ", "A#/Bb", "B    "};
 
 	static String numbersToLetters(double value) {
 		int number = (int) value;
