@@ -11,7 +11,7 @@ class Manager {
    */
   public static void main(String[] args) {
     int maxIterations = 10000000;
-    NeuralNet net = new NeuralNet(12, 12, 12);
+    NeuralNet net = new NeuralNet(12, 12, 12, 0.18);
 
     for (int iterations = 0; iterations < maxIterations; ++iterations) {
       Song song = new Song();

@@ -13,16 +13,16 @@ class NeuralNet {
   private int hiddenNodes;
   private int outputNodes;
   private int totalNodes;
-  private double[][] weights;
+  private double learningRate;
   private double[] values;
   private double[] thresholds;
+  private double[][] weights;
 
   // Random instance
   private Random random;
 
   // Constants
   private static final double E = 2.71828;
-  private static final double LEARNING_RATE = 0.18;
 
 
   /**
@@ -31,10 +31,11 @@ class NeuralNet {
    * @param hiddenNodes - number of nodes in hidden layer
    * @param outputNodes - number of nodes in output layer
    */
-  NeuralNet(final int inputNodes, final int hiddenNodes, final int outputNodes) {
+  NeuralNet(final int inputNodes, final int hiddenNodes, final int outputNodes, final double learningRate) {
     this.inputNodes = inputNodes;
     this.hiddenNodes = hiddenNodes;
     this.outputNodes = outputNodes;
+    this.learningRate = learningRate;
     init();
   }
 
@@ -136,18 +137,18 @@ class NeuralNet {
       double outputErrorGradient = values[o] * (1.0 - values[o]) * absoluteError;
 
       for (int h = inputNodes; h < inputNodes + hiddenNodes; h++) {
-        double delta = LEARNING_RATE * values[h] * outputErrorGradient;
+        double delta = learningRate * values[h] * outputErrorGradient;
         weights[h][o] += delta;
         double hiddenErrorGradient = values[h] * (1 - values[h]) * outputErrorGradient * weights[h][o];
         for (int i = 0; i < inputNodes; i++) {
-          double _delta = LEARNING_RATE * values[i] * hiddenErrorGradient;
+          double _delta = learningRate * values[i] * hiddenErrorGradient;
           weights[i][h] += _delta;
         }
 
-        double thresholdData = LEARNING_RATE * -1 * hiddenErrorGradient;
+        double thresholdData = learningRate * -1 * hiddenErrorGradient;
         thresholds[h] += thresholdData;
       }
-      double delta = LEARNING_RATE * -1 * outputErrorGradient;
+      double delta = learningRate * -1 * outputErrorGradient;
       thresholds[o] += delta;
     }
     return error;
