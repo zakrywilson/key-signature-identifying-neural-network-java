@@ -9,8 +9,7 @@ Simply run the `Manager.java` main.
 
 #### For each training session
 1. The `Song` class creates a *song* which is nothing more than a random series of notes.
-2. The song is then preprocessed in the `PreProcessing` class to output an array
-containing the number of occurrences of each note – C through B.  
+2. The song is then preprocessed to output an array containing the number of occurrences of each note – C through B.  
   * Examples: 
     * Note C -> `array[0] = 29` means that the note C occurred a total of 29 times in the song.
     * Note C# -> `array[1] = 0` means that the note C# did not occur in the song. 
