@@ -29,12 +29,11 @@ class Manager {
 
   /**
    * Tests neural network with verbose output.
-   *
-   * @param net           - neural network
-   * @param maxIterations - specified training iterations
+   * @param net - neural network
+   * @param maxIt - specified training iterations
    */
-  private static void verboseTest(NeuralNet net, int maxIterations) {
-    for (int iterations = 0; iterations < maxIterations; ++iterations) {
+  private static void verboseTest(NeuralNet net, int maxIt) {
+    for (int iterations = 0; iterations < maxIt; ++iterations) {
       Song song = new Song();
       NeuralNetOutput output = net.run(song);
       output.setCorrectAnswer(song.getKeyOfSong());
@@ -51,15 +50,13 @@ class Manager {
 
   /**
    * Test neural network with smaller subsets of the output.
-   *
-   * @param net           - neural network
-   * @param maxIterations - specified training iterations
-   * @param resetRate     - rate at which the data is displayed
+   * @param net - neural network
+   * @param maxIt - specified training iterations
+   * @param resetRate - rate at which the data is displayed
    */
-  private static void normalTest(NeuralNet net, int maxIterations, int
-    resetRate) {
+  private static void normalTest(NeuralNet net, int maxIt, int resetRate) {
     // Train neural network for x iterations
-    for (int iterations = 0; iterations < maxIterations; ++iterations) {
+    for (int iterations = 0; iterations < maxIt; ++iterations) {
       Song song = new Song();
       NeuralNetOutput output = net.run(song);
       output.setCorrectAnswer(song.getKeyOfSong());
@@ -83,13 +80,13 @@ class Manager {
   private static void displayPercentages(final NeuralNetOutput output) {
     System.out.print("\r");
     System.out.printf("Iterations: %,d     Correct: %2.2f%%     Error: %8.5f%%",
-      output.getAccumulativeIterations(), output.getPercentCorrect(), output
-        .getError());
+      output.getAccumulativeIterations(),
+      output.getPercentCorrect(),
+      output.getError());
   }
 
   /**
    * Displays results: key of the song, neural network's guess, and its error.
-   *
    * @param output - output results from the neural net
    */
   private static void displayVerbose(final NeuralNetOutput output) {
@@ -109,12 +106,16 @@ class Manager {
    */
   private static void displayResults(final NeuralNetOutput output) {
     String s = (output.isCorrect()) ? "+" : " ";
-    System.out.println("answer: " + Conversions.numbersToLetters(output
-      .getCorrectAnswer()) +
-      "  net's guess: " + Conversions.numbersToLetters(output.getGuess()) + "" +
+    System.out.println("answer: " +
+      Conversions.numbersToLetters(output.getCorrectAnswer()) +
+      "  net's guess: " +
+      Conversions.numbersToLetters(output.getGuess()) +
       " " + s);
   }
 
+  /**
+   * Displays help information general purpose and commandline arguments.
+   */
   private static void displayHelp() {
     System.out.println("Key Signature Identifying Neural Network");
     System.out.println("A neural network that can learn identify the key " +
@@ -132,12 +133,12 @@ class Manager {
   /**
    * Validates the commandline arguments
    * and sets verbose to true if argument given.
-   *
    * @param args - commandline arguments
    */
   private static void validateCommandlineArguments(final String[] args) {
     if (args.length > 1) {
-      throw new IllegalArgumentException("Invalid arguments! Must be 0 or 1.");
+      throw new IllegalArgumentException("Invalid number of arguments! " +
+        "Max of 1 permitted, " + args.length + " provided.");
     }
     if (args.length == 1) {
       if (args[0].equals("--verbose") || args[0].equals("-v")) {
