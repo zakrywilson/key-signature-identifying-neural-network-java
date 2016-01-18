@@ -149,21 +149,16 @@ class NeuralNet {
    * @return neural network's guess
    */
   private double interpretResults() {
-    int index = totalNodes - outputNodes + 1;
-    double offset = index - 1;
-    double guess = values[index - 1];
-    double note = index - 1.0;
-    double val;
-
-    while (index < values.length) {
-      val = values[index];
-      if (val > guess) {
-        guess = val;
-        note = index;
+    double[] output = Arrays.copyOfRange(values, inputNodes + hiddenNodes,
+      values.length);
+    int maxValueIndex = 0;
+    for (int i = 1; i < output.length; i++) {
+      double newValue = output[i];
+      if ((newValue > output[maxValueIndex])) {
+        maxValueIndex = i;
       }
-      index++;
     }
-    return note - offset;
+    return maxValueIndex;
   }
 
   /**
