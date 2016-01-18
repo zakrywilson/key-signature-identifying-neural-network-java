@@ -23,6 +23,21 @@ class Song {
   }
 
   /**
+   * Constructor.
+   * Creates a new random series of notes (song) based on a specified key.
+   * @param keyValue - the numerical value for a note (key signature)
+   */
+  Song(final int keyValue) {
+    if (keyValue < 0 || keyValue > 11) {
+      throw new IllegalArgumentException("Key signature must be between 0 and" +
+        " 11: " + keyValue);
+    }
+    random = new Random();
+    key = keyValue;
+    song = generateRandomSong();
+  }
+
+  /**
    * Getter for the key signature of the song.
    * @return key of the song
    */
