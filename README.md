@@ -36,13 +36,13 @@ for the next training session.
 
 Unless specified to be verbose, program defaults to using *normal output*.
 
-### Normal output
+#### Normal output
 * Output over 10 thousand iterations of 10 million is displayed to standard out.
 * Output contains:
   * The iteration number
   * The percept correct over each 10 thousand iterations
 
-### Verbose output
+#### Verbose output
 * Each iteration's output is sent to standard out.
 * Output contains:
   * The neural network's guess
@@ -52,7 +52,7 @@ Unless specified to be verbose, program defaults to using *normal output*.
   * [Here](http://i.imgur.com/2QhDqRl.png) is an example of the output after 10 
   million training sessions with a learning rate of 0.18.
   
-### End of all training sessions
+#### End of all training sessions
 
 At the end of all training sessions, the trained neural network will be tested
 on all key signatures (C through B) and the results will be sent to standard out.
@@ -71,11 +71,13 @@ Or run shell script:
 
 `> ./run.sh [arguments]`
 
-### Optional arguments
+#### Optional arguments
 
-* `--help ...... Help`
-* `--verbose ... Verbose output`
-* `-v .......... Verbose output`
+`--help ...... Help`
+
+`--verbose ... Verbose output`
+
+`-v .......... Verbose output`
 
 ## Notes
 * **This project has not been tested on real data. Results from testing with 
