@@ -5,12 +5,18 @@
  */
 class Manager {
 
+  /**
+   * Whether to use verbose output option
+   */
   private static boolean verbose = false;
+
+  /** Whether to print help options */
   private static boolean help = false;
+
 
   /**
    * Main: runs program by training neural network over a specified iterations.
-   * @param args - args not used
+   * @param args - options for 'help' and 'verbose'
    */
   public static void main(String[] args) {
     int resetRate = 10000;
@@ -26,6 +32,7 @@ class Manager {
       normalTest(net, maxIterations, resetRate);
     }
   }
+
 
   /**
    * Tests neural network with verbose output.
@@ -47,6 +54,7 @@ class Manager {
       displayResults(output);
     }
   }
+
 
   /**
    * Test neural network with smaller subsets of the output.
@@ -74,6 +82,7 @@ class Manager {
     }
   }
 
+
   /**
    * Displays results: percent correct, how iteration number, etc.
    */
@@ -84,6 +93,7 @@ class Manager {
       output.getPercentCorrect(),
       output.getError());
   }
+
 
   /**
    * Displays results: key of the song, neural network's guess, and its error.
@@ -100,6 +110,7 @@ class Manager {
     System.out.printf("\t|\terr:\t%8.5f  %s\n", output.getError(), s);
   }
 
+
   /**
    * Displays results: key of the song, neural network's guess, and its error.
    * @param output - output results from the neural net
@@ -112,6 +123,7 @@ class Manager {
       Conversions.numbersToLetters(output.getGuess()) +
       " " + s);
   }
+
 
   /**
    * Displays help information general purpose and commandline arguments.
@@ -129,6 +141,7 @@ class Manager {
     System.out.println("   -v       \t\t Verbose output");
     System.out.println();
   }
+
 
   /**
    * Validates the commandline arguments
