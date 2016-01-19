@@ -5,9 +5,7 @@
  */
 class Manager {
 
-  /**
-   * Whether to use verbose output option
-   */
+  /** Whether to use verbose output option */
   private static boolean verbose = false;
 
   /** Whether to print help options */

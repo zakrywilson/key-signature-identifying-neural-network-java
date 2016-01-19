@@ -9,9 +9,7 @@ import java.util.Random;
 class Song {
 
 
-  /**
-   * The generated song
-   */
+  /** The generated song */
   private byte[] song;
 
   /** The key of the song */

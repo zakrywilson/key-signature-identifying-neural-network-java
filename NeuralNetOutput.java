@@ -6,24 +6,16 @@
 class NeuralNetOutput {
 
 
-  /**
-   * The neural network's guess
-   */
+  /** The neural network's guess */
   private double guess;
 
-  /**
-   * The neural network's error
-   */
+  /** The neural network's error */
   private double error;
 
-  /**
-   * The key signature of the song
-   */
+  /** The key signature of the song */
   private double correctAnswer;
 
-  /**
-   * Whether the neural network's guess was correct
-   */
+  /** Whether the neural network's guess was correct */
   private boolean correct;
 
   /** The accumulative iterations */
