@@ -1,11 +1,13 @@
 import java.util.Random;
 
+
 /**
  * Handles the generation of new songs.
  * @author zakrywilson
  * @since 08/31/2015
  */
 class Song {
+
 
   private byte[] song;
   private int key;
@@ -22,6 +24,7 @@ class Song {
     song = generateRandomSong();
   }
 
+
   /**
    * Constructor.
    * Creates a new random series of notes (song) based on a specified key.
@@ -37,6 +40,7 @@ class Song {
     song = generateRandomSong();
   }
 
+
   /**
    * Getter for the key signature of the song.
    * @return key of the song
@@ -44,6 +48,7 @@ class Song {
   double getKeyOfSong() {
     return (double) key;
   }
+
 
   /**
    * Takes a byte array and returns the frequency of each note in an array of doubles.
@@ -56,6 +61,7 @@ class Song {
     return frequencies;
   }
 
+
   /**
    * Takes the key of the song and assigns that index to 1 while keeping the rest of the indexes at 0.
    * @return an array that contains all the correct answers for the net's output
@@ -66,6 +72,7 @@ class Song {
     return expectedAnswers;
   }
 
+
   /**
    * Creates a new random series of notes based on the key signature.
    * @return a new random song based on the key
@@ -73,6 +80,7 @@ class Song {
   private byte[] generateRandomSong() {
     return transpose(generateNotes());
   }
+
 
   /**
    * Changes notes from being 0-6 to being a set within all possible notes (0-11).
@@ -119,6 +127,7 @@ class Song {
     return notes;
   }
 
+
   /**
    * Generates the series of random notes.
    * @return series of random notes
@@ -135,6 +144,7 @@ class Song {
     return notesWithinKey;
   }
 
+
   /**
    * Generates a random number--number of notes in a song.
    * @return the random number between 100 and 10,000
@@ -143,6 +153,7 @@ class Song {
     return random.nextInt(990) + 10;
   }
 
+
   /**
    * Generates a random note between 0 and 6.
    * @return a random note between 0 and 6
@@ -150,6 +161,7 @@ class Song {
   private byte generateRandomNote() {
     return (byte) random.nextInt(7);
   }
+
 
   /**
    * Generates a random key, denoted by a number between 0 and 11.

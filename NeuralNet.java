@@ -1,12 +1,14 @@
 import java.util.Arrays;
 import java.util.Random;
 
+
 /**
  * Neural network that can identify the key signature of a arbitrary melody.
  * @author zakrywilson
  * @since 09/03/15
  */
 class NeuralNet {
+
 
   // Aspects of the neural network nodes
   private int inputNodes;
@@ -39,6 +41,7 @@ class NeuralNet {
     init();
   }
 
+
   /**
    * Runs through one iteration.
    * @param song - a new song to train on
@@ -56,6 +59,7 @@ class NeuralNet {
     return new NeuralNetOutput(guess, error);
   }
 
+
   /**
    * Initializes neural network characteristics: weights, thresholds, etc.
    */
@@ -66,6 +70,7 @@ class NeuralNet {
     thresholds = new double[totalNodes];
     connectNodes();
   }
+
 
   /**
    * Sets random default values for the network to iterate over.
@@ -78,6 +83,7 @@ class NeuralNet {
       }
     }
   }
+
 
   /**
    * Activates the neural network.
@@ -110,6 +116,7 @@ class NeuralNet {
       values[o] = 1.0 / (1.0 + Math.pow(E, -weightedInput));
     }
   }
+
 
   /**
    * Update weights and get results.
@@ -144,6 +151,7 @@ class NeuralNet {
     return error;
   }
 
+
   /**
    * Finds the highest ranked note in values array and returns that note.
    * @return neural network's guess
@@ -160,6 +168,7 @@ class NeuralNet {
     }
     return maxValueIndex;
   }
+
 
   /**
    * Gets a random number.

@@ -25,6 +25,7 @@ class NeuralNetOutput {
     this.error = neuralNetworkError;
   }
 
+
   /**
    * Gets the net's guess.
    * @return neural network's guess
@@ -33,6 +34,7 @@ class NeuralNetOutput {
     return this.guess;
   }
 
+
   /**
    * Gets the standard error.
    * @return standard error
@@ -40,6 +42,7 @@ class NeuralNetOutput {
   double getError() {
     return (float) this.error * (float) 100.0;
   }
+
 
   /**
    * Gets correct answer.
@@ -50,6 +53,7 @@ class NeuralNetOutput {
     return this.correctAnswer;
   }
 
+
   /**
    * Gets iteration count.
    *
@@ -59,6 +63,7 @@ class NeuralNetOutput {
     return accumulativeIterations;
   }
 
+
   /**
    * Gets the percent correct.
    *
@@ -67,6 +72,7 @@ class NeuralNetOutput {
   float getPercentCorrect() {
     return (float) correctCount / (float) iterations * (float) 100.0;
   }
+
 
   /**
    * Set the correct answer.
@@ -81,6 +87,7 @@ class NeuralNetOutput {
     }
   }
 
+
   /**
    * Reset iteration count and correct count.
    */
@@ -88,6 +95,7 @@ class NeuralNetOutput {
     iterations = 0;
     correctCount = 0;
   }
+
 
   /**
    * Returns whether the neural net was correct.
