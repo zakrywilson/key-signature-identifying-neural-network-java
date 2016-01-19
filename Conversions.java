@@ -5,8 +5,9 @@
  */
 class Conversions {
 
+
   /**
-   * All note names in their respective order.
+   * All note names in their respective order with spacing for output.
    */
   private static final String[] noteLetters = {
     "C    ",
@@ -22,6 +23,7 @@ class Conversions {
     "A#/Bb",
     "B    "
   };
+
 
   /**
    * Takes a single note number and converts it to its respective letter.
