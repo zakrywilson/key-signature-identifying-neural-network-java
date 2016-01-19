@@ -6,10 +6,33 @@
 class NeuralNetOutput {
 
 
-  private double guess, error, correctAnswer;
+  /**
+   * The neural network's guess
+   */
+  private double guess;
+
+  /**
+   * The neural network's error
+   */
+  private double error;
+
+  /**
+   * The key signature of the song
+   */
+  private double correctAnswer;
+
+  /**
+   * Whether the neural network's guess was correct
+   */
   private boolean correct;
+
+  /** The accumulative iterations */
   private static int accumulativeIterations = -1;
+
+  /** The iterations that can be reset */
   private static int iterations = -1;
+
+  /** The number of correct answers by the neural network */
   private static int correctCount = 0;
 
 

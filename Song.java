@@ -9,8 +9,15 @@ import java.util.Random;
 class Song {
 
 
+  /**
+   * The generated song
+   */
   private byte[] song;
+
+  /** The key of the song */
   private int key;
+
+  /* The random number generator */
   private Random random;
 
 

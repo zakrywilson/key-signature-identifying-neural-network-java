@@ -10,20 +10,38 @@ import java.util.Random;
 class NeuralNet {
 
 
-  // Aspects of the neural network nodes
+  /**
+   * The total number of input nodes in the neural network
+   */
   private int inputNodes;
+
+  /** The total number of hidden nodes in the neural network */
   private int hiddenNodes;
+
+  /** The total number of output nodes in the neural network */
   private int outputNodes;
+
+  /** The total number of nodes in the neural network */
   private int totalNodes;
+
+  /** The neural network's learning rate */
   private double learningRate;
+
+  /** The values array used for containing all nodes in neural network */
   private double[] values;
+
+  /** The thresholds of the neural network's nodes */
   private double[] thresholds;
+
+  /** The weights of the neural network's nodes */
   private double[][] weights;
 
-  // Random instance
-  private Random random;
+  /**
+   * Random number generator
+   */
+  private static Random random;
 
-  // Constants
+  /** Constant mathematical value e */
   private static final double E = 2.71828;
 
 
@@ -175,6 +193,6 @@ class NeuralNet {
    * @return random integer
    */
   private int getRandom() {
-    return this.random.nextInt(Integer.MAX_VALUE);
+    return random.nextInt(Integer.MAX_VALUE);
   }
 }

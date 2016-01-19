@@ -7,7 +7,7 @@ class Conversions {
 
 
   /**
-   * All note names in their respective order with spacing for output.
+   * All note names in their respective order with spacing for output
    */
   private static final String[] noteLetters = {
     "C    ",
