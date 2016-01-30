@@ -195,4 +195,16 @@ class NeuralNet {
   private int getRandom() {
     return random.nextInt(Integer.MAX_VALUE);
   }
+
+
+  @Override
+  public String toString() {
+    String string = "Neural network attributes:\n";
+    string += "\tInput nodes: " + this.inputNodes + "\n";
+    string += "\tHidden nodes: " + this.hiddenNodes + "\n";
+    string += "\tOutput nodes: " + this.outputNodes + "\n";
+    string += "\tLearning rate: " + this.learningRate + "\n";
+    string += "--------------------------------------------------------------";
+    return string;
+  }
 }
