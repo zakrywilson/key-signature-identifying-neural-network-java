@@ -73,15 +73,22 @@ Or run shell script:
 
 #### Optional arguments
 
-`--help ...... Help`
+`-h  or  --help......Help`
 
-`--verbose ... Verbose output`
+`-v  or  --verbose...Verbose output`
 
-`-v .......... Verbose output`
+`-nn [I][H][O][R]....Configure neural network characteristics where I is the
+number of input nodes, H is the number of hidden nodes, O is the number of
+output nodes, and R is the learning rate.`
+
+`-rr [X].............Set the reset rate to X for normal run (non-verbose)`
+
+`-mi [N].............Set the max training iterations to N\`
 
 ## Notes
 * **This project has not been tested on real data. Results from testing with 
 real data will come.**
 * More command line options to come.
-* The default learning rate is `0.18` and the default number of training 
-sessions is `10,000,000`. These settings can be changed in `Manager.java`.
+* The default size of the neural network is (12 x 12 x 12), the learning rate
+is 0.18, and the default number of training sessions is `10,000,000`. These
+settings can be changed by the optional command line arguments.
