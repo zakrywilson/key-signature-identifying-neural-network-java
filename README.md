@@ -73,9 +73,9 @@ Or run shell script:
 
 #### Optional arguments
 
-`-h  or  --help......Help`
+`-h  or  --help........Help`
 
-`-v  or  --verbose...Verbose output`
+`-v  or  --verbose.....Verbose output`
 
 `-nn [I][H][O][R]....Configure neural network characteristics where I is the
 number of input nodes, H is the number of hidden nodes, O is the number of
