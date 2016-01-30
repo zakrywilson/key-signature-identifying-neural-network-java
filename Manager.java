@@ -5,29 +5,117 @@
  */
 class Manager {
 
-  /** Whether to use verbose output option */
-  private static boolean verbose = false;
-
-  /** Whether to print help options */
-  private static boolean help = false;
-
 
   /**
    * Main: runs program by training neural network over a specified iterations.
-   * @param args - options for 'help' and 'verbose'
+   * @param args - command line arguments
    */
   public static void main(String[] args) {
-    int resetRate = 10000;
-    int maxIterations = 10000000;
-    NeuralNet net = new NeuralNet(12, 12, 12, 0.18);
+    try {
+      run(args);
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.err.println("A fatal error occurred.");
+    }
+  }
 
-    validateCommandlineArguments(args);
-    if (help) {
-      displayHelp();
-    } else if (verbose) {
-      verboseTest(net, maxIterations);
+  /**
+   * Runs the program after validating command line arguments.
+   * @param args - command line arguments
+   */
+  private static void run(final String[] args) {
+    // Create command line options
+    CommandLine commandline = new CommandLine();
+
+    // Verbose option
+    Option verboseOption = new Option();
+    verboseOption.addShortName("v");
+    verboseOption.addLongName("verbose");
+    verboseOption.addDescription("Runs program in verbose mode.");
+    commandline.addOption(verboseOption);
+
+    // Reset rate option
+    Option resetRateOption = new Option();
+    resetRateOption.addShortName("rr");
+    resetRateOption.addExpectedArgCount(1);
+    commandline.addOption(resetRateOption);
+
+    // Max iterations option
+    Option maxIterationsOption = new Option();
+    maxIterationsOption.addShortName("mi");
+    maxIterationsOption.addExpectedArgCount(1);
+    commandline.addOption(maxIterationsOption);
+
+    // Neural network options
+    Option neuralNetOptions = new Option();
+    neuralNetOptions.addShortName("nn");
+    neuralNetOptions.addExpectedArgCount(4);
+    commandline.addOption(neuralNetOptions);
+
+    // Help option
+    commandline.createHelp(getDisplayHelp());
+
+    // Parse command line arguments
+    commandline.parse(args);
+
+    // Get reset rate
+    int resetRate;
+    if (resetRateOption.isFound()) {
+      String string = resetRateOption.getArgument(0);
+      try {
+        resetRate = Integer.decode(string);
+      } catch (NumberFormatException nfe) {
+        throw new IllegalArgumentException("Reset rate must be an integer.");
+      }
     } else {
-      normalTest(net, maxIterations, resetRate);
+      resetRate = 10000;
+    }
+
+    // Get max iterations
+    int maxIterations;
+    if (maxIterationsOption.isFound()) {
+      String string = maxIterationsOption.getArgument(0);
+      try {
+        maxIterations = Integer.decode(string);
+      } catch (NumberFormatException nfe) {
+        throw new IllegalArgumentException("Max iterations must be an integer" +
+          ".");
+      }
+    } else {
+      maxIterations = 10000000;
+    }
+
+    // Get neural network configuration
+    NeuralNet net;
+    if (neuralNetOptions.isFound()) {
+      int inputNodes, hiddenNodes, outputNodes;
+      double learningRate;
+      try {
+        inputNodes = Integer.decode(neuralNetOptions.getArgument(0));
+        hiddenNodes = Integer.decode(neuralNetOptions.getArgument(1));
+        outputNodes = Integer.decode(neuralNetOptions.getArgument(2));
+      } catch (NumberFormatException nfe) {
+        throw new IllegalArgumentException("Neural network layer sizes must " +
+          "be integers.");
+      }
+      try {
+        learningRate = Double.parseDouble(neuralNetOptions.getArgument(3));
+      } catch (NumberFormatException nfe) {
+        throw new IllegalArgumentException("Learning rate must be a double.");
+      }
+      net = new NeuralNet(inputNodes, hiddenNodes, outputNodes, learningRate);
+    } else {
+      net = new NeuralNet(12, 12, 12, 0.18);
+    }
+
+    // Run program
+    if (commandline.needHelp()) {
+      System.out.println(commandline.getHelp());
+    } else if (verboseOption.isFound()) {
+      verboseRun(net, maxIterations);
+    } else {
+      System.out.println(net);
+      normalRun(net, maxIterations, resetRate);
     }
   }
 
@@ -37,7 +125,7 @@ class Manager {
    * @param net - neural network
    * @param maxIt - specified training iterations
    */
-  private static void verboseTest(NeuralNet net, int maxIt) {
+  private static void verboseRun(NeuralNet net, int maxIt) {
     for (int iterations = 0; iterations < maxIt; ++iterations) {
       Song song = new Song();
       NeuralNetOutput output = net.run(song);
@@ -60,7 +148,7 @@ class Manager {
    * @param maxIt - specified training iterations
    * @param resetRate - rate at which the data is displayed
    */
-  private static void normalTest(NeuralNet net, int maxIt, int resetRate) {
+  private static void normalRun(NeuralNet net, int maxIt, int resetRate) {
     // Train neural network for x iterations
     for (int iterations = 0; iterations < maxIt; ++iterations) {
       Song song = new Song();
@@ -125,38 +213,24 @@ class Manager {
 
   /**
    * Displays help information general purpose and commandline arguments.
+   * @return help instructions
    */
-  private static void displayHelp() {
-    System.out.println("Key Signature Identifying Neural Network");
-    System.out.println("A neural network that can learn identify the key " +
-      "signature of a given melody");
-    System.out.println("(https://github" +
-      ".com/zakrywilson/key-signature-identifying-neural-network-java)");
-    System.out.println("\nusage: ./run.sh [argument]\n");
-    System.out.println("Arguments:");
-    System.out.println("   --help   \t\t Help");
-    System.out.println("   --verbose\t\t Verbose output");
-    System.out.println("   -v       \t\t Verbose output");
-    System.out.println();
-  }
-
-
-  /**
-   * Validates the commandline arguments
-   * and sets verbose to true if argument given.
-   * @param args - commandline arguments
-   */
-  private static void validateCommandlineArguments(final String[] args) {
-    if (args.length > 1) {
-      throw new IllegalArgumentException("Invalid number of arguments! " +
-        "Max of 1 permitted, " + args.length + " provided.");
-    }
-    if (args.length == 1) {
-      if (args[0].equals("--verbose") || args[0].equals("-v")) {
-        verbose = true;
-      } else if (args[0].equals("--help")) {
-        help = true;
-      }
-    }
+  private static String getDisplayHelp() {
+    String string = "Key Signature Identifying Neural Network\n";
+    string += "A neural network that can learn identify the key ";
+    string += "signature of a given melody\n";
+    string += "(https://github.com/zakrywilson/";
+    string += "key-signature-identifying-neural-network-java)\n";
+    string += "\nusage: ./run.sh [arguments]\n\n";
+    string += "Arguments:\n";
+    string += "   -h  or  --help    \t Help\n";
+    string += "   -v  or  --verbose \t Verbose output\n";
+    string += "   -nn [I][H][O][R]  \t Configure neural network " +
+      "characteristics\n";
+    string += "   -rr [X]           \t Set the reset rate to X for normal run" +
+      " (non-verbose)\n";
+    string += "   -mi [N]           \t Set the max training iterations to N\n";
+    string += "\n";
+    return string;
   }
 }
