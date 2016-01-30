@@ -90,5 +90,5 @@ output nodes, and R is the learning rate.`
 real data will come.**
 * More command line options to come.
 * The default size of the neural network is (12 x 12 x 12), the learning rate
-is 0.18, and the default number of training sessions is `10,000,000`. These
+is 0.18, and the default number of training sessions is 10,000,000. These
 settings can be changed by the optional command line arguments.
