@@ -1,6 +1,5 @@
 # Do not share these files
 
-*Test.java
 output
 test
 *.idea
