@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CLASSPATH="-cp .:lib/command-line.jar"
+
+clear
+# Remove *.class files if they exist
+if [ -e *.class ]; then
+  rm *.class
+fi
+
+# Runs program
+javac $CLASSPATH *.java
+java $CLASSPATH Manager $@
+
+# Clean up after running
+sudo rm *.class
