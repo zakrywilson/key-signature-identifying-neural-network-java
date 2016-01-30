@@ -226,7 +226,9 @@ class Manager {
     string += "   -h  or  --help    \t Help\n";
     string += "   -v  or  --verbose \t Verbose output\n";
     string += "   -nn [I][H][O][R]  \t Configure neural network " +
-      "characteristics\n";
+      "characteristics where I is the number of input nodes, H is the number " +
+      "of hidden nodes, O is the number of output nodes, and R is the " +
+      "learning rate.\n";
     string += "   -rr [X]           \t Set the reset rate to X for normal run" +
       " (non-verbose)\n";
     string += "   -mi [N]           \t Set the max training iterations to N\n";
