@@ -59,7 +59,7 @@ on all key signatures (C through B) and the results will be sent to standard out
   
 ## How to run
 
-Run shell script: `> ./run.sh [arguments]`
+Run shell script: `> ./run [arguments]`
 
 #### Optional arguments
 
