@@ -4,7 +4,7 @@ CLASSPATH="-cp .:lib/command-line.jar"
 
 clear
 # Remove *.class files if they exist
-if [ -e *.class ]; then
+if [ -f *.class ]; then
   rm *.class
 fi
 
@@ -13,4 +13,4 @@ javac $CLASSPATH *.java
 java $CLASSPATH Manager $@
 
 # Clean up after running
-sudo rm *.class
+rm *.class
