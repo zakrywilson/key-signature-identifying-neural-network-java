@@ -59,17 +59,7 @@ on all key signatures (C through B) and the results will be sent to standard out
   
 ## How to run
 
-Compile and run manually:
-
-`> cd ~/path/to/key-signature-identifying-neural-network-java`
-
-`> javac *java`
-
-`> java Manager [arguments]`
-
-Or run shell script: 
-
-`> ./run.sh [arguments]`
+Run shell script: `> ./run [arguments]`
 
 #### Optional arguments
 
