@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Runs the training of the neural network.
  *
- * @author zakrywilson
+ * @author Zach Wilson
  * @since 01/14/16
  */
 public class Main {

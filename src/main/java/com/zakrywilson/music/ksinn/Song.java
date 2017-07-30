@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Handles the generation of new songs.
  *
- * @author zakrywilson
+ * @author Zach Wilson
  * @since 08/31/2015
  */
 class Song {

@@ -3,7 +3,7 @@ package com.zakrywilson.music.ksinn;
 /**
  * Contains the output from the neural network for post processing.
  *
- * @author zakrywilson
+ * @author Zach Wilson
  * @since 01/15/16
  */
 class NeuralNetOutput {

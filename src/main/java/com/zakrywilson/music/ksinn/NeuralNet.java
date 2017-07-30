@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Neural network that can identify the key signature of a arbitrary melody.
  *
- * @author zakrywilson
+ * @author Zach Wilson
  * @since 09/03/15
  */
 class NeuralNet implements Serializable {
