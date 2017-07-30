@@ -11,7 +11,8 @@ import java.time.format.DateTimeFormatter;
  * Runs the training of the neural network.
  *
  * @author Zach Wilson
- * @since 01/14/16
+ * @since 0.0.0
+ * @version 1.0.0
  */
 public class Main {
 
@@ -157,8 +158,8 @@ public class Main {
      */
     private static void displayVerbose(final NeuralNetOutput output) {
         System.out.println("------------------------------------------------------------------------");
-        System.out.printf("answer:\t%s%n", Conversions.numbersToLetters(output.getCorrectAnswer()));
-        System.out.printf("\t|\tnet's guess:\t%s%n", Conversions.numbersToLetters(output.getGuess()));
+        System.out.printf("answer:\t%s%n", NoteConversions.numbersToLetters(output.getCorrectAnswer()));
+        System.out.printf("\t|\tnet's guess:\t%s%n", NoteConversions.numbersToLetters(output.getGuess()));
         System.out.printf("\t|\terr:\t%8.5f  %s\n", output.getError(), (output.isCorrect()) ? "+" : " ");
     }
 
@@ -169,8 +170,8 @@ public class Main {
      */
     private static void displayResults(final NeuralNetOutput output) {
         System.out.printf("answer: %s\tnet's guess: %s %s%n",
-                          Conversions.numbersToLetters(output.getCorrectAnswer()),
-                          Conversions.numbersToLetters(output.getGuess()),
+                          NoteConversions.numbersToLetters(output.getCorrectAnswer()),
+                          NoteConversions.numbersToLetters(output.getGuess()),
                           (output.isCorrect()) ? "+" : " ");
     }
 

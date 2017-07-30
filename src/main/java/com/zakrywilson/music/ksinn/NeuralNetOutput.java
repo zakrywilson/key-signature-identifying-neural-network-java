@@ -4,7 +4,8 @@ package com.zakrywilson.music.ksinn;
  * Contains the output from the neural network for post processing.
  *
  * @author Zach Wilson
- * @since 01/15/16
+ * @since 0.0.0
+ * @version 1.0.0
  */
 class NeuralNetOutput {
 

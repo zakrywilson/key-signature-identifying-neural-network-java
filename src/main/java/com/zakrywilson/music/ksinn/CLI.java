@@ -10,6 +10,8 @@ import java.util.Arrays;
  * {@code CLI} (Command Line Interface) for parsing command line input.
  *
  * @author Zach Wilson
+ * @since 1.0.0
+ * @version 1.0.0
  */
 class CLI {
 
