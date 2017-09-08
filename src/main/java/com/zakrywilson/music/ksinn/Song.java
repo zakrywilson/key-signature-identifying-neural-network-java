@@ -37,7 +37,7 @@ class Song {
     /**
      * Constructor. Creates a new random series of notes (song) based on a specified key.
      *
-     * @param keyValue - the numerical value for a note (key signature)
+     * @param keyValue the numerical value for a note (key signature)
      */
     Song(final int keyValue) {
         if (keyValue < 0 || keyValue > 11) {
@@ -93,46 +93,46 @@ class Song {
     /**
      * Changes notes from being 0-6 to being a set within all possible notes (0-11).
      *
-     * @param notes - all notes in the song
+     * @param notes all notes in the song
      * @return transposed notes
      */
     private byte[] transpose(byte[] notes) {
 
-        for (int i = 0; i < notes.length; i++) {
+//        for (int i = 0; i < notes.length; i++) {
 
             // note 0
-            if (notes[i] == 0) {
-                notes[i] = (byte) ((key) % 12);
-            }
+//            if (notes[i] == 0) {
+//                notes[i] = (byte) ((key) % 12);
+//            }
             // note 1
-            else if (notes[i] == 1) {
-                notes[i] = (byte) ((2 + key) % 12);
-            }
+//            else if (notes[i] == 1) {
+//                notes[i] = (byte) ((2 + key) % 12);
+//            }
             // note 2
-            else if (notes[i] == 2) {
-                notes[i] = (byte) ((4 + key) % 12);
-            }
+//            else if (notes[i] == 2) {
+//                notes[i] = (byte) ((4 + key) % 12);
+//            }
             // note 3
-            else if (notes[i] == 3) {
-                notes[i] = (byte) ((5 + key) % 12);
-            }
+//            else if (notes[i] == 3) {
+//                notes[i] = (byte) ((5 + key) % 12);
+//            }
             // note 4
-            else if (notes[i] == 4) {
-                notes[i] = (byte) ((7 + key) % 12);
-            }
+//            else if (notes[i] == 4) {
+//                notes[i] = (byte) ((7 + key) % 12);
+//            }
             // note 5
-            else if (notes[i] == 5) {
-                notes[i] = (byte) ((9 + key) % 12);
-            }
+//            else if (notes[i] == 5) {
+//                notes[i] = (byte) ((9 + key) % 12);
+//            }
             // note 6
-            else if (notes[i] == 6) {
-                notes[i] = (byte) ((11 + key) % 12);
-            }
+//            else if (notes[i] == 6) {
+//                notes[i] = (byte) ((11 + key) % 12);
+//            }
             // anything more...
-            else {
-                throw new RuntimeException("Invalid number in array: " + notes[i]);
-            }
-        }
+//            else {
+//                throw new RuntimeException("Invalid number in array: " + notes[i]);
+//            }
+//        }
         return notes;
     }
 

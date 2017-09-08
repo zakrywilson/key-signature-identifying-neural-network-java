@@ -47,8 +47,8 @@ class NeuralNetOutput {
     /**
      * Constructor.
      *
-     * @param neuralNetworkGuess - the guess the neural network made
-     * @param neuralNetworkError - the total error
+     * @param neuralNetworkGuess the guess the neural network made
+     * @param neuralNetworkError the total error
      */
     NeuralNetOutput(final double neuralNetworkGuess, final double neuralNetworkError) {
         iterations++;

@@ -21,7 +21,7 @@ public class Main {
     /**
      * Main: runs program by training neural network over a specified iterations.
      *
-     * @param args - command line arguments
+     * @param args command line arguments
      */
     public static void main(String[] args) {
         try {
@@ -34,34 +34,33 @@ public class Main {
     /**
      * Runs the program after validating command line arguments.
      *
-     * @param args - command line arguments
+     * @param args command line arguments
      */
     private static void run(final String[] args) {
         CLI cli = new CLI();
         cli.parseCommandLine(args);
 
         while (true) {
-            NeuralNet nn = new NeuralNet(cli.getInputLayerSize(), cli.getHiddenLayerSize(), cli.getOutputLayerSize(), cli.getLearningRate());
-
             if (cli.requiresHelp()) {
                 cli.printHelp();
                 return;
             }
 
+            NeuralNet nn = new NeuralNet(cli.getInputLayerSize(), cli.getHiddenLayerSize(), cli.getOutputLayerSize(), cli.getLearningRate());
+
             if (cli.runVerbose()) {
                 verboseRun(nn, cli.getMaxIterations());
-                return;
+            } else {
+                normalRun(nn, cli.getMaxIterations(), cli.getResetRate());
             }
-
-            normalRun(nn, cli.getMaxIterations(), cli.getResetRate());
         }
     }
 
     /**
      * Tests neural network with verbose output.
      *
-     * @param net - neural network
-     * @param maxIt - specified training iterations
+     * @param net neural network
+     * @param maxIt specified training iterations
      */
     private static void verboseRun(NeuralNet net, int maxIt) {
         for (int iterations = 0; iterations < maxIt; ++iterations) {
@@ -77,9 +76,9 @@ public class Main {
     /**
      * Test neural network with smaller subsets of the output.
      *
-     * @param net - neural network
-     * @param maxIt - specified training iterations
-     * @param resetRate - rate at which the data is displayed
+     * @param net neural network
+     * @param maxIt specified training iterations
+     * @param resetRate rate at which the data is displayed
      */
     private static void normalRun(NeuralNet net, int maxIt, int resetRate) {
         // Train neural network for x iterations
@@ -154,7 +153,7 @@ public class Main {
     /**
      * Displays results: key of the song, neural network's guess, and its error.
      *
-     * @param output - output results from the neural net
+     * @param output output results from the neural net
      */
     private static void displayVerbose(final NeuralNetOutput output) {
         System.out.println("------------------------------------------------------------------------");
@@ -166,7 +165,7 @@ public class Main {
     /**
      * Displays results: key of the song, neural network's guess, and its error.
      *
-     * @param output - output results from the neural net
+     * @param output output results from the neural net
      */
     private static void displayResults(final NeuralNetOutput output) {
         System.out.printf("answer: %s\tnet's guess: %s %s%n",

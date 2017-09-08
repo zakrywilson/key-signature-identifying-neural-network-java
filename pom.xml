@@ -6,7 +6,7 @@
 
   <groupId>com.zakrywilson.music</groupId>
   <artifactId>key-signature-identifying-neural-network</artifactId>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <name>Key Signature Identifying Neural Network</name>
   <url>https://github.com/zakrywilson</url>
 
@@ -40,10 +40,9 @@
       <version>${project.slf4j.log4j.version}</version>
     </dependency>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>3.0.2</version>
     </dependency>
     <dependency>
       <groupId>commons-cli</groupId>

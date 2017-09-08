@@ -68,9 +68,9 @@ class NeuralNet implements Serializable {
     /**
      * Constructor.
      *
-     * @param inputNodes - number of nodes in input layer
-     * @param hiddenNodes - number of nodes in hidden layer
-     * @param outputNodes - number of nodes in output layer
+     * @param inputNodes number of nodes in input layer
+     * @param hiddenNodes number of nodes in hidden layer
+     * @param outputNodes number of nodes in output layer
      */
     NeuralNet(final short inputNodes, final short hiddenNodes, final short outputNodes, final double learningRate) {
         this.inputNodes = inputNodes;
@@ -83,8 +83,8 @@ class NeuralNet implements Serializable {
     /**
      * Runs through one iteration.
      *
-     * @param song - a new song to train on
-     * @return output - the output containing all relevant results
+     * @param song a new song to train on
+     * @return output the output containing all relevant results
      */
     NeuralNetOutput run(final Song song) {
 
@@ -156,7 +156,7 @@ class NeuralNet implements Serializable {
     /**
      * Update weights and get results.
      *
-     * @param expectedResults - the correct answer for the neural net's output nodes
+     * @param expectedResults the correct answer for the neural net's output nodes
      * @return results array (where index 0 contains output and index 1 contains sum of squared
      * errors)
      */
